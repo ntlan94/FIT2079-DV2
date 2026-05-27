@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
   "padding": 5,
   "title": {
@@ -12,7 +12,7 @@
   "data": [
     {
       "name": "source_0",
-      "url": "https://raw.githubusercontent.com/ntlan94/FIT2179_DV2/main/data/historical-battery-installation.csv",
+      "url": "data/historical-battery-installation.csv",
       "format": {
         "type": "csv",
         "parse": {"Installation year": "date"},

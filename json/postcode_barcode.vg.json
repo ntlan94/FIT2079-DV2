@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The Postcode Barcode: Solar Distribution by State",
+    "subtitle": "Each tick represents a single postcode. Scroll to zoom and drag to pan along the X-axis.",
+    "fontSize": 15,
+    "anchor": "start",
+    "color": "#2c3e50"
+  },
+  "width": "container",
+  "height": 250,
+  "data": {
+    "url": "data/sgu-solar-installations.csv",
+    "format": {"type": "csv", "parse": {"Postcode": "string", "Total": "number"}}
+  },
+  "transform": [
+    {"calculate": "toString(datum.Postcode)", "as": "PC"},
+    {"calculate": "length(datum.PC) == 3 ? '0' + datum.PC : datum.PC", "as": "PC_pad"},
+    {"calculate": "datum.PC_pad[0] == '2' ? 'NSW' : datum.PC_pad[0] == '3' ? 'VIC' : datum.PC_pad[0] == '4' ? 'QLD' : datum.PC_pad[0] == '5' ? 'SA' : datum.PC_pad[0] == '6' ? 'WA' : datum.PC_pad[0] == '7' ? 'TAS' : (datum.PC_pad[0] == '0' || datum.PC_pad[0] == '8' || datum.PC_pad[0] == '9') ? 'ACT/NT' : 'Other'", "as": "State"},
+    {"filter": "datum.Total > 0 && datum.State != 'Other'"},
+    
+    {"calculate": "datum.Total + (random() - 0.5) * 0.8", "as": "Jittered_Total"}
+  ],
+  "params": [
+    {
+      "name": "grid",
+      "select": {"type": "interval", "encodings": ["x"]},
+      "bind": "scales"
+    }
+  ],
+  "mark": {
+    "type": "tick",
+    "thickness": 1.5,
+    "height": 20,
+    "opacity": 0.5
+  },
+  "encoding": {
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "title": null,
+      "sort": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT/NT"],
+      "axis": {"grid": true, "domain": false, "ticks": false, "labelFontSize": 12}
+    },
+    "x": {
+      "field": "Jittered_Total",
+      "type": "quantitative",
+      "title": "Total Solar Installations",
+      "axis": {
+        "format": ",.0f", 
+        "grid": false, 
+        "titleFontSize": 12
+      }
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "scale": {"scheme": "category10"},
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "PC_pad", "title": "Postcode"},
+      {"field": "State", "title": "State"},
+      {"field": "Total", "title": "Total Installations", "format": ","}
+    ]
+  },
+  "config": {"view": {"stroke": "transparent"}, "font": "sans-serif"}
+}
