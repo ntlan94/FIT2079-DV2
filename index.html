@@ -4,147 +4,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIT2079 Data Visualization 2 - Solar Energy Dashboard</title>
+  <title>Australia's Rooftop Revolution | Data Visualization</title>
 
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
-  <h1>The Australian Energy Ecosystem</h1>
-  <p class="description">
-    This dashboard explores the distribution and growth of residential solar PV installations across Australia, 
-    highlighting regional performance and national trends.
-  </p>
+  <header class="hero-section">
+    <p class="super-title">FIT2179 · DATA VISUALISATION 2</p>
+    <h1>Australia's Rooftop Revolution</h1>
+    <p class="subtitle">A visual journey through the world's fastest decentralized energy transition—uncovering the socio-economic drivers, the home electrification boom, and the looming grid vulnerability.</p>
+  </header>
 
-  <div class="container">
-    <div id="vis1" class="vis-container"></div>
-  </div>
-
-  <div class="container">
-    <div id="vis2" class="vis-container"></div>
-  </div>
-
-  <div class="container">
-    <div id="vis3" class="vis-container"></div>
-  </div>
-  <div class="container">
-    <div id="vis4" class="vis-container"></div>
-  </div>
-  <div class="container">
-    <div id="vis5" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> While solar dominates the national landscape, micro-hydro systems find a strong niche in Tasmania (TAS) due to its unique topography and water resources. Conversely, coastal states lead in micro-wind adoption.
+  <section class="story-section">
+    <p class="chapter-number">01 THE SOLAR BOOM</p>
+    <h2>A Nation Powered by the Sun</h2>
+    <p class="chapter-desc">
+      Australia is in the midst of a silent, decentralized energy revolution. Currently, no other nation generates more per-capita solar energy from its residential rooftops. This rapid transition has fundamentally rewired the national energy grid. However, this transformation is not uniform. The choropleth map below visualizes this geographic distribution, exposing a striking concentration of installations heavily biased toward the sun-drenched eastern seaboard—specifically within New South Wales (NSW) and Queensland (QLD).
     </p>
-  </div>
-  <div class="container">
-    <div id="vis6" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> The Diverging Bar Chart highlights the electrification scale. While states like NSW and QLD dominate solar PV (left), NSW is also aggressively leading the transition to energy-efficient air source heat pumps (right).
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis7" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> By combining installation counts with total capacity data, this Dual-Axis chart reveals whether high-volume areas are simply installing more systems, or adopting larger, more powerful arrays. A spike in the line graph indicates a region investing in heavier commercial/residential capacity.
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis8" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> This normalized area chart highlights the evolution of the residential battery market. Notice the early dominance of South Australia (SA) around 2016-2018, which has gradually given way to New South Wales (NSW) and Victoria (VIC) as national adoption broadened.
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis9" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> This 2D Density Heatmap reveals that the vast majority of Australian postcodes cluster tightly in the lower-left quadrant (fewer than 10,000 systems and 50,000 kW capacity). The rare dark outliers stretching toward the top right represent massive urban development zones heavily investing in rooftop solar.
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis10" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> This Trellis Scatter Plot uses logarithmic scales to handle massive data variance. It reveals the "Renewable Ecosystem" of postcodes: areas with high solar adoption (moving right) often parallel high heat pump adoption (moving up). The bubble size shows that battery storage is still a premium add-on, with noticeable large "Battery Bubbles" heavily concentrated in SA and select NSW postcodes.
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis11" class="vis-container"></div>
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px;">
-      <strong>Insight:</strong> This Dumbbell Plot serves as the conclusion to our analysis. While Australia leads the world in rooftop solar adoption (yellow dots), there is a massive "storage gap." The purple dots show that battery adoption is lagging far behind. The next major phase of Australia's energy transition will not be about generating more power, but storing it.
-    </p>
-  </div>
-  <div class="container">
-    <div id="vis12" class="vis-container"></div>
     
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
-      <p style="font-weight: bold; margin-bottom: 5px; color: #2c3e50;">Bivariate Legend</p>
-      <div style="display: grid; grid-template-columns: auto auto auto auto; gap: 2px; align-items: center;">
-        <div style="rotate: -90deg; font-size: 12px; color: #7f8c8d; margin-right: 10px;">More Battery &rarr;</div>
-        
-        <div style="width: 30px; height: 30px; background-color: #5ac8c8;"></div>
-        <div style="width: 30px; height: 30px; background-color: #5698b9;"></div>
-        <div style="width: 30px; height: 30px; background-color: #3b4994;"></div>
-        
-        <div></div> <div style="width: 30px; height: 30px; background-color: #ace4e4;"></div>
-        <div style="width: 30px; height: 30px; background-color: #a5add3;"></div>
-        <div style="width: 30px; height: 30px; background-color: #8c62aa;"></div>
-        
-        <div></div>
-        
-        <div style="width: 30px; height: 30px; background-color: #e8e8e8;"></div>
-        <div style="width: 30px; height: 30px; background-color: #dfb0d6;"></div>
-        <div style="width: 30px; height: 30px; background-color: #be64ac;"></div>
+    <div class="container"><div id="vis1" class="vis-container"></div></div>
+    
+    <p class="chapter-desc">
+      Yet, looking strictly at installation volume masks a crucial technological shift. The narrative is no longer just about placing panels on roofs; it is about <strong>maximizing generation capacity</strong>. Homeowners are increasingly upgrading from modest 3kW systems to massive 10kW+ arrays. By correlating raw installation counts with total kilowatt (kW) capacity, we can identify which regions are transitioning from simple energy supplementation to aggressive power generation.
+    </p>
+
+    <div class="container">
+      <div id="vis7" class="vis-container"></div>
+      <div class="key-insight">
+        <strong>Insight:</strong> By combining installation counts with total capacity data, this Dual-Axis chart reveals an upward trajectory in system size. Spikes in the capacity line indicate regions heavily investing in larger, future-proofed residential arrays.
       </div>
-      <div style="font-size: 12px; color: #7f8c8d; margin-top: 5px; margin-left: 20px;">More Solar &rarr;</div>
     </div>
 
-    <p style="font-size: 13px; color: #666; margin-top: 15px; font-style: italic; max-width: 800px; text-align: center;">
-      <strong>Insight:</strong> This Bivariate Choropleth Map reveals the true storage gap geographically. Dark pink areas indicate postcodes that heavily adopted solar but ignored battery storage. The rare dark blue areas represent the ultimate goal: high adoption of both technologies.
+    <p class="chapter-desc">
+      To truly understand the heartbeat of this phenomenon, we must abandon macroscopic state-level data and zoom into individual postal codes. The 2D density heatmap below unpacks this localized adoption. It shatters the assumption that the "solar revolution" is driven by sprawling rural farms or dense inner-city CBDs. Instead, it is the <strong>suburban heartland</strong> that is powering the nation.
     </p>
-  </div>
+    
+    <div class="container">
+      <div id="vis9" class="vis-container"></div>
+      <div class="key-insight">
+        <strong>Insight:</strong> The vast majority of Australian postcodes cluster tightly in the lower-left quadrant. The rare dark outliers stretching toward the top right represent massive suburban development zones—the true engines of the rooftop boom.
+      </div>
+    </div>
+
+    <p class="chapter-desc">
+      When isolating these elite suburban performers, a clear leaderboard emerges. The "Barcode" strip plot and the Lollipop chart highlight these top-tier postcodes. Notice how specific expanding suburbs in Queensland and Western Australia punch significantly above their weight, completely overshadowing the raw population dominance of Sydney or Melbourne. <strong>(Scroll to zoom horizontally on the Barcode chart to reveal the hidden density of thousands of postcodes).</strong>
+    </p>
+    
+    <div class="chart-grid">
+      <div class="container"><div id="vis13" class="vis-container"></div></div>
+      <div class="container"><div id="vis2" class="vis-container"></div></div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <p class="chapter-number">02 THE DEMOGRAPHICS</p>
+    <h2>Dismantling the Wealth Myth</h2>
+    <p class="chapter-desc">
+      A prevailing hypothesis in energy economics is the concept of <strong>"Solar Gentrification"</strong>—the cynical idea that renewable energy adoption is a luxury accessible primarily to affluent households, leaving the working class to bear the cost of the legacy coal grid. To test this theory, we mapped solar installations against the Australian Bureau of Statistics’ Socio-Economic Indexes for Areas (SEIFA). The resulting data completely dismantles this misconception.
+    </p>
+    
+    <div class="container"><div id="vis4" class="vis-container"></div></div>
+    <div class="key-insight">
+      <strong>Key Finding:</strong> Solar adoption does NOT peak in the wealthiest decile (10). Instead, it forms a parabolic curve peaking in the middle-to-upper-middle deciles (7-9). This indicates that the boom is driven by working-class and suburban families leveraging their roof space to aggressively mitigate rising retail electricity and mortgage costs.
+    </div>
+  </section>
+
+  <section class="story-section">
+    <p class="chapter-number">03 THE ECOSYSTEM</p>
+    <h2>The Gateway to Full Electrification</h2>
+    <p class="chapter-desc">
+      Generating cheap electricity from the sun is only the foundational layer of residential decarbonization. Rooftop solar acts as a "gateway technology." Once homeowners experience the financial benefits of free daytime energy, their behavior shifts. The modern Australian home is evolving into a self-sustaining microgrid, adopting a broader ecosystem of renewable appliances. Geography and climate dictate what comes next.
+    </p>
+    
+    <div class="chart-grid">
+      <div class="container">
+        <div id="vis5" class="vis-container"></div>
+        <div class="key-insight">
+          <strong>Insight:</strong> While solar PV universally dominates, micro-hydro systems find a strong, unique niche in Tasmania (TAS) due to its mountainous topography and water resources, whereas coastal states experiment with micro-wind.
+        </div>
+      </div>
+      <div class="container">
+        <div id="vis6" class="vis-container"></div>
+        <div class="key-insight">
+          <strong>Insight:</strong> The Diverging Bar Chart highlights the next phase of electrification. NSW is not only dominating solar PV (left), but aggressively leading the nation in adopting highly efficient Air Source Heat Pumps (right).
+        </div>
+      </div>
+    </div>
+
+    <p class="chapter-desc">
+      The relationship between these technologies is highly symbiotic. Postcodes that invest heavily in solar generation inevitably reinvest their savings into energy-intensive but highly efficient appliances. Heat pumps, for instance, act as "thermal batteries," using excess midday solar to heat water for the evening. The Trellis Scatter Plot maps this multifaceted ecosystem across the entire country.
+    </p>
+
+    <div class="container">
+      <div id="vis10" class="vis-container"></div>
+      <div class="key-insight">
+        <strong>Insight:</strong> This logarithmic Trellis plot reveals the "Renewable Ecosystem": areas moving right (high solar) consistently move up (high heat pump adoption). However, the bubble size indicates that chemical battery storage remains a rare, premium add-on.
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <p class="chapter-number">04 THE STORAGE GAP</p>
+    <h2>The Climax: A Grid on the Brink</h2>
+    <p class="chapter-desc">
+      Australia’s spectacular success in solar adoption has inadvertently engineered a severe infrastructural vulnerability known as the <strong>"Duck Curve."</strong> As millions of solar arrays flood the grid with cheap, abundant energy during midday, demand from coal plants plummets to near zero. But when the sun sets and families return home to cook and heat their houses, demand spikes violently. Without storage, this sudden whiplash stresses the grid to its breaking point. The ultimate—and urgent—solution is residential battery storage.
+    </p>
+
+    <div class="container">
+      <div id="vis3" class="vis-container"></div>
+      <div class="key-insight">
+        <strong>Insight:</strong> Looking at raw volume, the trajectory of residential battery installations is climbing sharply. However, compared to the 3+ million solar roofs, the overall baseline remains alarmingly small, signifying an immature market struggling to keep pace.
+      </div>
+    </div>
+
+    <p class="chapter-desc">
+      Diving deeper into this emerging storage market, we observe shifting dynamics between states. South Australia was the global pioneer, heavily subsidizing batteries after the infamous 2016 statewide blackout. But as the imperative for storage becomes a national issue, larger states are beginning to awaken.
+    </p>
+
+    <div class="chart-grid">
+      <div class="container">
+        <div id="vis8" class="vis-container"></div>
+        <div class="key-insight">
+          <strong>Insight:</strong> This normalized area chart highlights the evolution of the battery market. Notice the early dominance of South Australia (SA), which has gradually been diluted as NSW and VIC broadened their adoption.
+        </div>
+      </div>
+      <div class="container">
+        <div id="vis14" class="vis-container"></div>
+        <div class="key-insight">
+          <strong>Insight:</strong> Using shared Y-axes, these faceted trajectories emphasize the stark reality of scale. While all states show growth, the sheer volume of batteries required in populous states like NSW and VIC towers over the rest of the nation.
+        </div>
+      </div>
+    </div>
+
+    <p class="chapter-desc">
+      While the growth trajectories of battery installations appear promising when viewed in isolation, contextualizing them against the massive, pre-existing volume of solar installations reveals a sobering reality. The Dumbbell Plot mathematically illustrates this severe discrepancy between generation capability and storage capacity.
+    </p>
+
+    <div class="container">
+      <div id="vis11" class="vis-container"></div>
+      <div class="key-insight">
+        <strong>The Climax:</strong> This Dumbbell Plot summarizes the central conflict of Australia's energy transition. We lead the world in generation (yellow dots), but our "storage gap" is massive. The purple dots (batteries) are lagging dangerously far behind the panels.
+      </div>
+    </div>
+    
+    <p class="chapter-desc">
+      Synthesizing this conflict geographically brings us to our final visualization. The Bivariate Choropleth map evaluates postcodes on two critical axes simultaneously: Solar Density and Battery Density. The resulting color matrix exposes the true vulnerability—and the ultimate goal—of Australia's transition to a decarbonized future.
+    </p>
+
+    <div class="container">
+      <div id="vis12" class="vis-container"></div>
+      
+      <div class="bivariate-legend">
+        <div class="bivariate-y-label">
+          More Battery &rarr;
+        </div>
+        <div>
+          <div class="bivariate-grid">
+            <div class="bivariate-color-box" style="background-color: #5ac8c8;"></div>
+            <div class="bivariate-color-box" style="background-color: #5698b9;"></div>
+            <div class="bivariate-color-box" style="background-color: #3b4994;"></div>
+            <div class="bivariate-color-box" style="background-color: #ace4e4;"></div>
+            <div class="bivariate-color-box" style="background-color: #a5add3;"></div>
+            <div class="bivariate-color-box" style="background-color: #8c62aa;"></div>
+            <div class="bivariate-color-box" style="background-color: #e8e8e8;"></div>
+            <div class="bivariate-color-box" style="background-color: #dfb0d6;"></div>
+            <div class="bivariate-color-box" style="background-color: #be64ac;"></div>
+          </div>
+          <div class="bivariate-x-label">
+            More Solar &rarr;
+          </div>
+        </div>
+      </div>
+      
+      <div class="key-insight">
+        <strong>Geographic Conclusion:</strong> The expansive dark pink areas indicate highly vulnerable postcodes that have aggressively adopted solar but completely ignored battery storage. The rare, dark blue spots represent the ultimate future: a balanced, highly resilient microgrid where homes both generate and store their own power.
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p class="author-info">
+      <strong>Author:</strong> Thanh Lan Ngo - 36057800 &nbsp;&middot;&nbsp; 
+      <strong>Course:</strong> FIT2179, Monash University, Semester 1, 2026 &nbsp;&middot;&nbsp; 
+      <strong>Date:</strong> May 2026
+    </p>
+    
+    <p class="ai-disclosure">
+      Generative AI (Google Gemini) was used to assist in coding, Vega-Lite specifications.
+    </p>
+    
+    <div class="sources-container">
+      <p class="sources-title">Data Sources & References:</p>
+      <ul class="sources-list">
+        <li>
+          Solar & Battery Data: 
+          <a href="https://cer.gov.au/markets/reports-and-data/small-scale-installation-postcode-data" target="_blank">
+            Clean Energy Regulator Australia
+          </a>
+        </li>
+        <li>
+          Demographics Data: 
+          <a href="https://www.abs.gov.au/statistics/people/people-and-communities/socio-economic-indexes-areas-seifa-australia/latest-release" target="_blank">
+            Australian Bureau of Statistics (SEIFA)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
   <script type="text/javascript">
-    var spec1 = "json/Australian_Residential_Solar_PV_Adoption_Map.vg.json";
-    vegaEmbed('#vis1', spec1).then(function(result) {}).catch(console.error);
-
-    var spec2 = "json/Top_15_solar_install.vg.json";
-    vegaEmbed('#vis2', spec2).then(function(result) {}).catch(console.error);
-
-    var spec3 = "json/Battery_installations.vg.json";
-    vegaEmbed('#vis3', spec3).then(function(result) {}).catch(console.error);
-
-    var spec4 = "json/SEIFA_vs_solar_install.vg.json";
-    vegaEmbed('#vis4', spec4).then(function(result){}).catch(console.error);
+    // ACT 1
+    vegaEmbed('#vis1', "json/Australian_Residential_Solar_PV_Adoption_Map.vg.json").catch(console.error);
+    vegaEmbed('#vis7', "json/dual_axis_capacity.vg.json").catch(console.error);
+    vegaEmbed('#vis9', "json/capacity_density_heatmap.vg.json").catch(console.error);
+    vegaEmbed('#vis13', "json/postcode_barcode.vg.json").catch(console.error);
+    vegaEmbed('#vis2', "json/Top_15_solar_install.vg.json").catch(console.error);
     
-    var spec5 = "json/wind_hydro_donut.vg.json";
-    vegaEmbed('#vis5', spec5).then(function(result){}).catch(console.error);
-
-    var spec6 = "json/tornado_solar_vs_heatpump.vg.json";
-    vegaEmbed('#vis6', spec6).then(function(result){}).catch(console.error);
+    // ACT 2
+    vegaEmbed('#vis4', "json/SEIFA_vs_solar_install.vg.json").catch(console.error);
     
-    var spec7 = "json/dual_axis_capacity.vg.json";
-    vegaEmbed('#vis7', spec7).then(function(result){}).catch(console.error);
+    // ACT 3
+    vegaEmbed('#vis5', "json/wind_hydro_donut.vg.json").catch(console.error);
+    vegaEmbed('#vis6', "json/tornado_solar_vs_heatpump.vg.json").catch(console.error);
+    vegaEmbed('#vis10', "json/ecosystem_trellis.vg.json").catch(console.error);
     
-    var spec8 = "json/battery_market_share.vg.json";
-    vegaEmbed('#vis8', spec8).then(function(result){}).catch(console.error);
-
-    var spec9 = "json/capacity_density_heatmap.vg.json";
-    vegaEmbed('#vis9', spec9).then(function(result){}).catch(console.error);
-  
-    var spec10 = "json/ecosystem_trellis.vg.json";
-    vegaEmbed('#vis10', spec10).then(function(result){}).catch(console.error);
-
-    var spec11 = "json/battery_gap_dumbbell.vg.json";
-    vegaEmbed('#vis11', spec11).catch(console.error);
-
-    var spec12 = "json/bivariate_map.vg.json";
-    vegaEmbed('#vis12', spec12).catch(console.error);
+    // ACT 4
+    vegaEmbed('#vis3', "json/Battery_installations.vg.json").catch(console.error);
+    vegaEmbed('#vis8', "json/battery_market_share.vg.json").catch(console.error);
+    vegaEmbed('#vis14', "json/independent_trajectories.vg.json").catch(console.error);
+    vegaEmbed('#vis11', "json/battery_gap_dumbbell.vg.json").catch(console.error);
+    vegaEmbed('#vis12', "json/bivariate_map.vg.json").catch(console.error);
   </script>
 
 </body>
-
 </html>
