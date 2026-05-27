@@ -1,43 +1,210 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
-
+/* --- PREMIUM TYPOGRAPHY & LAYOUT --- */
 body {
-    font-family: 'Urbanist', sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #f8f9fa; 
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: 'Georgia', serif; 
 }
 
+.story-section, .hero-section {
+  max-width: 1000px; 
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+header.hero-section {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: white;
+  max-width: 100%; 
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+header h1 {
+  font-size: 4.5rem;
+  margin: 15px 0;
+  letter-spacing: -1px;
+}
+
+.super-title {
+  font-weight: bold;
+  letter-spacing: 4px;
+  opacity: 0.8;
+  color: #f39c12;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  color: #2c3e50;
+}
+
+.chapter-number {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 800;
+  color: #ff9800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.chapter-desc {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #3b4252;
+}
+
+.chapter-desc strong {
+  color: #2c3e50;
+}
+
+/* --- CHART CONTAINERS --- */
 .container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 40px;
-    width: 860px;
-    max-width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px; 
+  padding: 35px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+  margin: 40px auto; 
+  width: 100%;
+  max-width: 1100px; 
+  overflow-x: auto;
+  transition: transform 0.3s ease;
+  font-family: 'Helvetica Neue', Arial, sans-serif; 
 }
 
-h1 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-p.description {
-    color: #7f8c8d;
-    max-width: 800px;
-    text-align: center;
-    margin-bottom: 40px;
-    line-height: 1.6;
+.container:hover {
+  transform: translateY(-5px); 
 }
 
 .vis-container {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chart-grid .container {
+  flex: 1;
+  min-width: 500px; 
+  margin: 0; 
+}
+
+.key-insight {
+  background-color: #fff4e5;
+  border-left: 5px solid #ff9800;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  width: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- BIVARIATE MAP LEGEND --- */
+.bivariate-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bivariate-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 13px;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.bivariate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  gap: 3px;
+}
+
+.bivariate-color-box {
+  border-radius: 3px;
+}
+
+.bivariate-x-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* --- LIGHT FOOTER --- */
+.site-footer {
+  text-align: center;
+  padding: 50px 20px;
+  color: #777;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.author-info {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.ai-disclosure {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.sources-container {
+  font-size: 0.9rem;
+}
+
+.sources-title {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.sources-list a {
+  color: #4ca1af;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sources-list a:hover {
+  text-decoration: underline;
 }
