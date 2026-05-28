@@ -69,7 +69,15 @@
       A prevailing hypothesis in energy economics is the concept of <strong>"Solar Gentrification"</strong>—the cynical idea that renewable energy adoption is an eco-virtue-signaling luxury accessible primarily to affluent households, leaving the working class to bear the cost of the legacy coal grid. To test this theory, we mapped solar installations against the Australian Bureau of Statistics’ Socio-Economic Indexes for Areas (SEIFA). The resulting data completely dismantles this misconception.
     </p>
     
-    <div class="container"><div id="vis4" class="vis-container"></div></div>
+    <div class="container">
+      <div class="toolbar">
+        <button class="reset-btn" onclick="resetChart('#vis4', 'json/SEIFA_vs_solar_install.vg.json')">
+          Reset View
+        </button>
+      </div>
+      
+      <div id="vis4" class="vis-container"></div>
+    </div>
     <div class="key-insight">
       <strong>Key Finding:</strong> Solar adoption does NOT peak in the wealthiest decile (10). Instead, it forms a parabolic curve peaking in the middle-to-upper-middle deciles (7-9). Far from being a luxury, rooftop solar has become a critical financial shield for the Australian <strong>"mortgage belt"</strong>. In the face of a severe cost-of-living crisis, these families are leveraging their roof space to aggressively mitigate soaring household expenses.
     </div>
@@ -228,6 +236,12 @@
     
     // ACT 2
     vegaEmbed('#vis4', "json/SEIFA_vs_solar_install.vg.json").catch(console.error);
+    
+    // Hàm Reset Biểu Đồ
+    function resetChart(visId, jsonPath) {
+      // Khi bấm nút, nó sẽ load lại đúng file JSON đó vào đúng ID đó
+      vegaEmbed(visId, jsonPath).catch(console.error);
+    }
     
     // ACT 3
     vegaEmbed('#vis5', "json/wind_hydro_donut.vg.json").catch(console.error);
