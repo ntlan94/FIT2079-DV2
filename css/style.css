@@ -3,7 +3,7 @@
   box-sizing: border-box; 
 }
 
-/* --- PREMIUM TYPOGRAPHY & LAYOUT --- */
+/* --- TYPOGRAPHY & LAYOUT --- */
 body {
   background-color: #f8f9fa; 
   margin: 0;
@@ -93,6 +93,9 @@ h2 {
   overflow-x: auto;
   transition: transform 0.3s ease;
   font-family: 'Helvetica Neue', Arial, sans-serif; 
+  
+  display: flex;
+  flex-direction: column;
 }
 
 .container:hover {
@@ -118,6 +121,55 @@ h2 {
   flex: 1;
   min-width: 500px; 
   margin: 0; 
+}
+
+/* --- TOOLBAR & RESET BUTTON --- */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  order: 2; 
+  margin-top: 20px;
+}
+
+.reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: #fff;
+  border: 1.5px solid #2c3e50;
+  border-radius: 8px;
+  color: #2c3e50;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+}
+
+.reset-btn:hover {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.reset-btn:active {
+  transform: scale(0.96);
+}
+
+.reset-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.reset-btn:hover svg {
+  transform: rotate(-180deg);
+}
+
+
+.vega-actions { 
+  display: none !important; 
 }
 
 /* --- KEY INSIGHT BOX --- */
