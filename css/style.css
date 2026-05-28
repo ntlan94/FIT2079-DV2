@@ -1,3 +1,8 @@
+/* --- GLOBAL FIXES --- */
+*, *::before, *::after {
+  box-sizing: border-box; 
+}
+
 /* --- PREMIUM TYPOGRAPHY & LAYOUT --- */
 body {
   background-color: #f8f9fa; 
@@ -5,6 +10,8 @@ body {
   padding: 0;
   color: #333;
   font-family: 'Georgia', serif; 
+  font-size: 16px; 
+  line-height: 1.6;
 }
 
 .story-section, .hero-section {
@@ -23,7 +30,7 @@ header.hero-section {
 }
 
 header h1 {
-  font-size: 4.5rem;
+  font-size: 4rem; 
   margin: 15px 0;
   letter-spacing: -1px;
 }
@@ -33,20 +40,21 @@ header h1 {
   letter-spacing: 4px;
   opacity: 0.8;
   color: #f39c12;
+  font-size: 0.95rem;
 }
 
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem; 
   font-weight: 300;
   opacity: 0.9;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
 h2 {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 25px;
   border-bottom: 2px solid #eee;
   padding-bottom: 10px;
@@ -63,7 +71,7 @@ h2 {
 }
 
 .chapter-desc {
-  font-size: 1.2rem;
+  font-size: 1.15rem; 
   line-height: 1.8;
   margin-bottom: 30px;
   color: #3b4252;
@@ -112,15 +120,23 @@ h2 {
   margin: 0; 
 }
 
+/* --- KEY INSIGHT BOX --- */
 .key-insight {
   background-color: #fff4e5;
   border-left: 5px solid #ff9800;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 15px 20px;
+  
+
+  margin: 25px auto 0 auto; 
+  width: 100%;
+  max-width: 850px; 
+  
   border-radius: 0 8px 8px 0;
   font-style: italic;
-  width: 100%;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.05rem; 
+  color: #444;
+  line-height: 1.6;
 }
 
 /* --- BIVARIATE MAP LEGEND --- */
@@ -173,17 +189,17 @@ h2 {
 }
 
 .author-info {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 10px;
 }
 
 .ai-disclosure {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 30px;
 }
 
 .sources-container {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .sources-title {
@@ -207,4 +223,69 @@ h2 {
 
 .sources-list a:hover {
   text-decoration: underline;
+}
+/* =======================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET ADAPTATION)
+   ======================================================= */
+
+@media screen and (max-width: 768px) {
+
+  .story-section {
+    padding: 30px 15px;
+  }
+  
+  header.hero-section {
+    padding: 80px 15px;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .chapter-desc {
+    font-size: 1.05rem;
+  }
+
+  .container {
+    padding: 20px 10px; 
+    margin: 25px auto;
+    border-radius: 8px;
+  }
+
+  .chart-grid {
+    gap: 20px;
+  }
+
+  .chart-grid .container {
+    min-width: 100%; 
+  }
+
+  /* 5. Tối ưu hộp Insight */
+  .key-insight {
+    padding: 15px;
+    font-size: 0.95rem;
+    margin-top: 15px;
+  }
+
+  .bivariate-legend {
+    transform: scale(0.9);
+  }
+  
+
+  .site-footer {
+    padding: 40px 15px;
+  }
+  
+  .ai-disclosure, .author-info {
+    font-size: 0.95rem;
+  }
 }
