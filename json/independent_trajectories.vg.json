@@ -42,15 +42,7 @@
       {
         "mark": {
           "type": "area",
-          "opacity": 0.8,
-          "color": {
-            "x1": 1, "y1": 1, "x2": 1, "y2": 0,
-            "gradient": "linear",
-            "stops": [
-              {"offset": 0, "color": "white"},
-              {"offset": 1, "color": "#f39c12"}
-            ]
-          }
+          "opacity": 0.5
         },
         "encoding": {
           "x": {
@@ -79,13 +71,21 @@
             {"field": "Installation year", "timeUnit": "year", "type": "temporal", "title": "Year", "format": "%Y"},
             {"field": "State", "type": "nominal"},
             {"field": "Installations", "type": "quantitative", "format": ","}
-          ]
+          ],
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "scale": {
+              "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
+              "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+            },
+            "legend": null
+          }
         }
       },
       {
         "mark": {
           "type": "line",
-          "color": "#e67e22",
           "strokeWidth": 2
         },
         "encoding": {
@@ -97,6 +97,15 @@
           "y": {
             "field": "Installations",
             "type": "quantitative"
+          },
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "scale": {
+              "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
+              "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+            },
+            "legend": null
           }
         }
       }
@@ -105,12 +114,13 @@
   "config": {
     "font": "Helvetica Neue, Arial, sans-serif",
     "title": {
-      "fontSize": 15,
+      "fontSize": 16,
       "fontWeight": "bold",
       "anchor": "start",
       "color": "#2c3e50",
       "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d"
+      "subtitleColor": "#7f8c8d",
+      "offset": 15
     },
     "axis": {
       "titleFontSize": 13,
@@ -118,6 +128,12 @@
       "titleColor": "#444",
       "labelColor": "#666",
       "gridColor": "#e0e0e0"
+    },
+    "legend": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666"
     },
     "view": {
       "stroke": "transparent"

@@ -3,7 +3,6 @@
   "title": {
     "text": "Electrification: Solar PV vs. Heat Pump Adoption",
     "subtitle": "Comparing total installations by State (Diverging Tornado Chart)",
-    "fontSize": 18,
     "anchor": "start",
     "color": "#2c3e50"
   },
@@ -79,8 +78,7 @@
           "type": "nominal",
           "axis": {
             "title": "",
-            "labelFontWeight": "bold",
-            "labelFontSize": 12
+            "labelFontWeight": "bold"
           },
           "sort": {"field": "Sum_Solar", "order": "descending"}
         },
@@ -110,7 +108,31 @@
     }
   ],
   "config": {
-    "view": {"stroke": "transparent"},
-    "font": "sans-serif"
+    "font": "Helvetica Neue, Arial, sans-serif",
+    "title": {
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "anchor": "start",
+      "color": "#2c3e50",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#7f8c8d",
+      "offset": 15
+    },
+    "axis": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666",
+      "gridColor": "#e0e0e0"
+    },
+    "legend": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666"
+    },
+    "view": {
+      "stroke": "transparent"
+    }
   }
 }

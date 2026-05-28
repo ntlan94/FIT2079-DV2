@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
   "padding": 5,
   "width": 800,
@@ -7,7 +7,6 @@
   "title": {
     "text": "Historical Battery Installations by State (2014 - 2025)",
     "subtitle": "Click on a State in the legend to isolate its trend line.",
-    "fontSize": 18,
     "anchor": "start",
     "color": "#2c3e50"
   },
@@ -225,14 +224,8 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {
-        "fields": [
-          {"data": "source_0", "field": "State"},
-          {"data": "data_0", "field": "State"}
-        ],
-        "sort": true
-      },
-      "range": {"scheme": "category10"}
+      "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
+      "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
     }
   ],
   "axes": [
@@ -317,13 +310,31 @@
     }
   ],
   "config": {
-    "style": {
-      "guide-label": {"font": "sans-serif"},
-      "guide-title": {"font": "sans-serif"},
-      "group-title": {"font": "sans-serif"},
-      "group-subtitle": {"font": "sans-serif"},
-      "cell": {"stroke": "transparent"},
-      "text": {"font": "sans-serif"}
+    "font": "Helvetica Neue, Arial, sans-serif",
+    "title": {
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "anchor": "start",
+      "color": "#2c3e50",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#7f8c8d",
+      "offset": 15
+    },
+    "axis": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666",
+      "gridColor": "#e0e0e0"
+    },
+    "legend": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666"
+    },
+    "view": {
+      "stroke": "transparent"
     }
   }
 }
