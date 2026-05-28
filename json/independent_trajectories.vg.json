@@ -1,297 +1,126 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "background": "white",
-  "padding": 5,
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Independent Trajectories: Battery Growth",
     "subtitle": "Independent Y-axes allow fair comparison of growth curves.",
-    "fontSize": 15,
-    "anchor": "start",
-    "color": "#2c3e50"
+    "anchor": "start"
   },
-  "data": [
+  "data": {
+    "url": "data/historical-battery-installation.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"Installation year": "date"}
+    }
+  },
+  "transform": [
     {
-      "name": "source_0",
-      "url": "data/historical-battery-installation.csv",
-      "format": {
-        "type": "csv",
-        "parse": {"Installation year": "date"},
-        "delimiter": ","
-      },
-      "transform": [
-        {
-          "type": "fold",
-          "fields": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
-          "as": ["State", "Raw_Installations"]
-        },
-        {
-          "type": "formula",
-          "expr": "toNumber(replace(toString(datum.Raw_Installations), /,/g, ''))",
-          "as": "Installations"
-        },
-        {"type": "filter", "expr": "isValid(datum.Installations)"}
-      ]
+      "fold": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+      "as": ["State", "Raw_Installations"]
     },
     {
-      "name": "facet_domain",
-      "source": "source_0",
-      "transform": [{"type": "aggregate", "groupby": ["State"]}]
+      "calculate": "toNumber(replace(toString(datum.Raw_Installations), /,/g, ''))",
+      "as": "Installations"
     },
     {
-      "name": "facet_domain_row",
-      "transform": [{"type": "sequence", "start": 0, "stop": 1}]
-    },
-    {
-      "name": "facet_domain_column",
-      "transform": [
-        {
-          "type": "sequence",
-          "start": 0,
-          "stop": {"signal": "length(data(\"facet_domain\"))"}
-        }
-      ]
-    },
-    {
-      "name": "data_1",
-      "source": "source_0",
-      "transform": [
-        {
-          "field": "Installation year",
-          "type": "timeunit",
-          "units": ["year"],
-          "as": ["year_Installation year", "year_Installation year_end"]
-        },
-        {
-          "type": "impute",
-          "field": "Installations",
-          "groupby": ["State"],
-          "key": "year_Installation year",
-          "method": "value",
-          "value": 0
-        },
-        {
-          "type": "stack",
-          "groupby": ["year_Installation year", "State"],
-          "field": "Installations",
-          "sort": {"field": [], "order": []},
-          "as": ["Installations_start", "Installations_end"],
-          "offset": "zero"
-        }
-      ]
+      "filter": "isValid(datum.Installations)"
     }
   ],
-  "signals": [
-    {"name": "child_width", "value": 120},
-    {"name": "child_height", "value": 100}
-  ],
-  "layout": {"padding": 20, "bounds": "full", "align": "all"},
-  "marks": [
-    {
-      "name": "row_header",
-      "type": "group",
-      "role": "row-header",
-      "from": {"data": "facet_domain_row"},
-      "encode": {"update": {"height": {"signal": "child_height"}}},
-      "axes": [
-        {
-          "scale": "y",
-          "orient": "left",
-          "grid": false,
-          "tickCount": 3,
-          "labelOverlap": true,
-          "zindex": 0
-        }
-      ]
-    },
-    {
-      "name": "column_footer",
-      "type": "group",
-      "role": "column-footer",
-      "from": {"data": "facet_domain_column"},
-      "encode": {"update": {"width": {"signal": "child_width"}}},
-      "axes": [
-        {
-          "scale": "x",
-          "orient": "bottom",
-          "grid": false,
-          "format": "%Y",
-          "labelAngle": 315,
-          "tickCount": 3,
-          "labelAlign": "right",
-          "labelBaseline": "top",
-          "labelFlush": true,
-          "labelOverlap": true,
-          "tickMinStep": {
-            "signal": "datetime(2002, 0, 1, 0, 0, 0, 0) - datetime(2001, 0, 1, 0, 0, 0, 0)"
-          },
-          "zindex": 0
-        }
-      ]
-    },
-    {
-      "name": "cell",
-      "type": "group",
-      "title": {
-        "text": {
-          "signal": "isValid(parent[\"State\"]) ? parent[\"State\"] : \"\"+parent[\"State\"]"
+  "columns": 4,
+  "facet": {
+    "field": "State",
+    "type": "nominal",
+    "title": null,
+    "header": {
+      "labelFontSize": 14,
+      "labelFontWeight": "bold"
+    }
+  },
+  "spec": {
+    "width": 120,
+    "height": 100,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "opacity": 0.8,
+          "color": {
+            "x1": 1, "y1": 1, "x2": 1, "y2": 0,
+            "gradient": "linear",
+            "stops": [
+              {"offset": 0, "color": "white"},
+              {"offset": 1, "color": "#f39c12"}
+            ]
+          }
         },
-        "style": "guide-label",
-        "frame": "group",
-        "fontSize": 13,
-        "fontWeight": "bold",
-        "offset": 10
-      },
-      "style": "cell",
-      "from": {
-        "facet": {"name": "facet", "data": "source_0", "groupby": ["State"]}
-      },
-      "sort": {"field": ["datum[\"State\"]"], "order": ["ascending"]},
-      "data": [
-        {
-          "source": "facet",
-          "name": "data_0",
-          "transform": [
-            {
-              "field": "Installation year",
-              "type": "timeunit",
-              "units": ["year"],
-              "as": ["year_Installation year", "year_Installation year_end"]
-            },
-            {
-              "type": "impute",
-              "field": "Installations",
-              "groupby": [],
-              "key": "year_Installation year",
-              "method": "value",
-              "value": 0
-            },
-            {
-              "type": "stack",
-              "groupby": ["year_Installation year"],
-              "field": "Installations",
-              "sort": {"field": [], "order": []},
-              "as": ["Installations_start", "Installations_end"],
-              "offset": "zero"
+        "encoding": {
+          "x": {
+            "field": "Installation year",
+            "timeUnit": "year",
+            "type": "temporal",
+            "title": null,
+            "axis": {
+              "grid": false,
+              "format": "%Y",
+              "labelAngle": -45,
+              "tickCount": 3
             }
+          },
+          "y": {
+            "field": "Installations",
+            "type": "quantitative",
+            "title": null,
+            "axis": {
+              "grid": true,
+              "gridDash": [4, 4],
+              "tickCount": 3
+            }
+          },
+          "tooltip": [
+            {"field": "Installation year", "timeUnit": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+            {"field": "State", "type": "nominal"},
+            {"field": "Installations", "type": "quantitative", "format": ","}
           ]
         }
-      ],
-      "encode": {
-        "update": {
-          "width": {"signal": "child_width"},
-          "height": {"signal": "child_height"}
-        }
       },
-      "marks": [
-        {
-          "name": "child_layer_0_marks",
-          "type": "area",
-          "style": ["area"],
-          "sort": {"field": "x"},
-          "from": {"data": "data_0"},
-          "encode": {
-            "update": {
-              "opacity": {"value": 0.8},
-              "orient": {"value": "vertical"},
-              "fill": {
-                "value": {
-                  "x1": 1,
-                  "y1": 1,
-                  "x2": 1,
-                  "y2": 0,
-                  "gradient": "linear",
-                  "stops": [
-                    {"offset": 0, "color": "white"},
-                    {"offset": 1, "color": "#f39c12"}
-                  ]
-                }
-              },
-              "tooltip": {
-                "signal": "{\"Year\": timeFormat(datum[\"year_Installation year\"], \"%Y\"), \"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Installations\": format(datum[\"Installations\"], \",\")}"
-              },
-              "description": {
-                "signal": "\"Installation year (year): \" + (timeFormat(datum[\"year_Installation year\"], \"%Y\")) + \"; Installations: \" + (format(datum[\"Installations\"], \"\")) + \"; Year: \" + (timeFormat(datum[\"year_Installation year\"], \"%Y\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"])"
-              },
-              "x": {"scale": "x", "field": "year_Installation year"},
-              "y": {"scale": "y", "field": "Installations_end"},
-              "y2": {"scale": "y", "field": "Installations_start"},
-              "defined": {
-                "signal": "isValid(datum[\"year_Installation year\"]) && isFinite(+datum[\"year_Installation year\"]) && isValid(datum[\"Installations\"]) && isFinite(+datum[\"Installations\"])"
-              }
-            }
-          }
-        },
-        {
-          "name": "child_layer_1_marks",
+      {
+        "mark": {
           "type": "line",
-          "style": ["line"],
-          "sort": {"field": "x"},
-          "from": {"data": "data_0"},
-          "encode": {
-            "update": {
-              "stroke": {"value": "#e67e22"},
-              "tooltip": {
-                "signal": "{\"Year\": timeFormat(datum[\"year_Installation year\"], \"%Y\"), \"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Installations\": format(datum[\"Installations\"], \",\")}"
-              },
-              "description": {
-                "signal": "\"Installation year (year): \" + (timeFormat(datum[\"year_Installation year\"], \"%Y\")) + \"; Installations: \" + (format(datum[\"Installations\"], \"\")) + \"; Year: \" + (timeFormat(datum[\"year_Installation year\"], \"%Y\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"])"
-              },
-              "x": {"scale": "x", "field": "year_Installation year"},
-              "y": {"scale": "y", "field": "Installations_end"},
-              "strokeWidth": {"value": 2},
-              "defined": {
-                "signal": "isValid(datum[\"year_Installation year\"]) && isFinite(+datum[\"year_Installation year\"]) && isValid(datum[\"Installations\"]) && isFinite(+datum[\"Installations\"])"
-              }
-            }
+          "color": "#e67e22",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "x": {
+            "field": "Installation year",
+            "timeUnit": "year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "Installations",
+            "type": "quantitative"
           }
         }
-      ],
-      "axes": [
-        {
-          "scale": "y",
-          "orient": "left",
-          "grid": true,
-          "gridDash": [4, 4],
-          "tickCount": 3,
-          "gridScale": "x",
-          "domain": false,
-          "labels": false,
-          "aria": false,
-          "maxExtent": 0,
-          "minExtent": 0,
-          "ticks": false,
-          "zindex": 0
-        }
-      ]
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "time",
-      "domain": {"data": "data_1", "field": "year_Installation year"},
-      "range": [0, {"signal": "child_width"}]
-    },
-    {
-      "name": "y",
-      "type": "linear",
-      "domain": {
-        "data": "data_1",
-        "fields": ["Installations_start", "Installations_end"]
-      },
-      "range": [{"signal": "child_height"}, 0],
-      "zero": false,
-      "nice": true
-    }
-  ],
+      }
+    ]
+  },
   "config": {
-    "style": {
-      "guide-label": {"font": "sans-serif"},
-      "guide-title": {"font": "sans-serif"},
-      "group-title": {"font": "sans-serif"},
-      "group-subtitle": {"font": "sans-serif"},
-      "cell": {"stroke": "transparent"},
-      "text": {"font": "sans-serif"}
+    "font": "Helvetica Neue, Arial, sans-serif",
+    "title": {
+      "fontSize": 15,
+      "fontWeight": "bold",
+      "anchor": "start",
+      "color": "#2c3e50",
+      "subtitleFontSize": 13,
+      "subtitleColor": "#7f8c8d"
+    },
+    "axis": {
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "titleColor": "#444",
+      "labelColor": "#666",
+      "gridColor": "#e0e0e0"
+    },
+    "view": {
+      "stroke": "transparent"
     }
   }
 }
