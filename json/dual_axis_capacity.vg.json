@@ -25,7 +25,7 @@
         {"type": "formula", "expr": "toNumber(datum.Postcode)", "as": "p_num"},
         {
           "type": "formula",
-          "expr": "datum.p_num >= 3000 && datum.p_num <= 3999 || datum.p_num >= 8000 && datum.p_num <= 8999 ? 'VIC ' + datum.PC : datum.p_num >= 4000 && datum.p_num <= 4999 || datum.p_num >= 9000 && datum.p_num <= 9999 ? 'QLD ' + datum.PC : datum.p_num >= 5000 && datum.p_num <= 5999 ? 'SA ' + datum.PC : datum.p_num >= 6000 && datum.p_num <= 6999 ? 'WA ' + datum.PC : datum.p_num >= 7000 && datum.p_num <= 7999 ? 'TAS ' + datum.PC : datum.p_num >= 800 && datum.p_num <= 999 ? 'NT ' + datum.PC : datum.p_num >= 200 && datum.p_num <= 299 || datum.p_num >= 2600 && datum.p_num <= 2639 || datum.p_num >= 2900 && datum.p_num <= 2920 ? 'ACT ' + datum.PC : 'NSW ' + datum.PC",
+          "expr": "datum.p_num >= 3000 && datum.p_num <= 3999 || datum.p_num >= 8000 && datum.p_num <= 8999 ? 'VIC ' + datum.PC : datum.p_num >= 4000 && datum.p_num <= 4999 || datum.p_num >= 9000 && datum.p_num <= 9999 ? 'QLD ' + datum.PC : datum.p_num >= 5000 && datum.p_num <= 5999 ? 'SA ' + datum.PC : datum.p_num >= 6000 && datum.p_num <= 6999 ? 'WA ' + datum.PC : datum.p_num >= 7000 && datum.p_num <= 7999 ? 'TAS ' + datum.PC : datum.p_num >= 800 && datum.p_num <= 999 ? 'NT ' + datum.PC : 'NSW ' + datum.PC",
           "as": "Postcode_Label"
         },
         {

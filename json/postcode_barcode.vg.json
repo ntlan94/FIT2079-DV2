@@ -15,7 +15,7 @@
   "transform": [
     {"calculate": "toString(datum.Postcode)", "as": "PC"},
     {"calculate": "length(datum.PC) == 3 ? '0' + datum.PC : datum.PC", "as": "PC_pad"},
-    {"calculate": "datum.PC_pad[0] == '2' ? 'NSW' : datum.PC_pad[0] == '3' ? 'VIC' : datum.PC_pad[0] == '4' ? 'QLD' : datum.PC_pad[0] == '5' ? 'SA' : datum.PC_pad[0] == '6' ? 'WA' : datum.PC_pad[0] == '7' ? 'TAS' : (datum.PC_pad[0] == '0' || datum.PC_pad[0] == '8' || datum.PC_pad[0] == '9') ? 'ACT/NT' : 'Other'", "as": "State"},
+    {"calculate": "datum.PC_pad[0] == '2' ? 'NSW' : datum.PC_pad[0] == '3' ? 'VIC' : datum.PC_pad[0] == '4' ? 'QLD' : datum.PC_pad[0] == '5' ? 'SA' : datum.PC_pad[0] == '6' ? 'WA' : datum.PC_pad[0] == '7' ? 'TAS' : (datum.PC_pad[0] == '0' || datum.PC_pad[0] == '8' || datum.PC_pad[0] == '9') ? 'NT' : 'Other'", "as": "State"},
     {"filter": "datum.Total > 0 && datum.State != 'Other'"},
     
     {"calculate": "datum.Total + (random() - 0.5) * 0.8", "as": "Jittered_Total"}
@@ -38,7 +38,7 @@
       "field": "State",
       "type": "nominal",
       "title": null,
-      "sort": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT/NT"],
+      "sort": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
       "axis": {"grid": true, "domain": false, "ticks": false}
     },
     "x": {
@@ -54,8 +54,8 @@
       "field": "State",
       "type": "nominal",
       "scale": {
-        "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
-        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+        "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#7f7f7f"]
       },
       "legend": null
     },

@@ -1,8 +1,6 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "background": "white",
-  "padding": 5,
-  "width": 800,
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
   "height": 400,
   "title": {
     "text": "Historical Battery Installations by State (2014 - 2025)",
@@ -10,293 +8,77 @@
     "anchor": "start",
     "color": "#2c3e50"
   },
-  "style": "cell",
-  "data": [
-    {"name": "State_Selection_store"},
+  "data": {
+    "url": "data/historical-battery-installation.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
     {
-      "name": "source_0",
-      "url": "data/historical-battery-installation.csv",
-      "format": {"type": "csv", "delimiter": ","},
-      "transform": [
-        {
-          "type": "fold",
-          "fields": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
-          "as": ["State", "Installations"]
-        },
-        {
-          "type": "formula",
-          "expr": "toNumber(replace(datum.Installations, ',', ''))",
-          "as": "Installations_Count"
-        }
-      ]
+      "fold": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+      "as": ["State", "Installations"]
     },
     {
-      "name": "data_0",
-      "source": "source_0",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "isValid(datum[\"Installations_Count\"]) && isFinite(+datum[\"Installations_Count\"])"
-        }
-      ]
+      "calculate": "toNumber(replace(datum.Installations, ',', ''))",
+      "as": "Installations_Count"
+    },
+    {
+      "filter": "isValid(datum.Installations_Count)"
+    },
+    {
+      "calculate": "datum.State == 'ACT' ? 'NSW' : datum.State",
+      "as": "State"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "Installations_Count", "as": "Installations_Count"}],
+      "groupby": ["Installation year", "State"]
     }
   ],
-  "signals": [
-    {
-      "name": "unit",
-      "value": {},
-      "on": [
-        {"events": "pointermove", "update": "isTuple(group()) ? group() : unit"}
-      ]
-    },
-    {
-      "name": "State_Selection_State_legend",
-      "value": null,
-      "on": [
-        {
-          "events": [
-            {"source": "view", "type": "click", "markname": "State_legend_symbols"},
-            {"source": "view", "type": "click", "markname": "State_legend_labels"},
-            {"source": "view", "type": "click", "markname": "State_legend_entries"}
-          ],
-          "update": "isDefined(datum.value) ? datum.value : item().items[0].items[0].datum.value",
-          "force": true
-        },
-        {
-          "events": [{"source": "view", "type": "click"}],
-          "update": "!event.item || !datum ? null : State_Selection_State_legend",
-          "force": true
-        }
-      ]
-    },
+  "params": [
     {
       "name": "State_Selection",
-      "update": "vlSelectionResolve(\"State_Selection_store\", \"union\", true, true)"
-    },
-    {
-      "name": "State_Selection_tuple",
-      "update": "State_Selection_State_legend !== null ? {fields: State_Selection_tuple_fields, values: [State_Selection_State_legend]} : null"
-    },
-    {
-      "name": "State_Selection_tuple_fields",
-      "value": [{"type": "E", "field": "State"}]
-    },
-    {
-      "name": "State_Selection_toggle",
-      "value": false,
-      "on": [
-        {
-          "events": {"merge": [{"source": "view", "type": "click"}]},
-          "update": "event.shiftKey"
-        }
-      ]
-    },
-    {
-      "name": "State_Selection_modify",
-      "on": [
-        {
-          "events": {"signal": "State_Selection_tuple"},
-          "update": "modify(\"State_Selection_store\", State_Selection_toggle ? null : State_Selection_tuple, State_Selection_toggle ? null : true, State_Selection_toggle ? State_Selection_tuple : null)"
-        }
-      ]
+      "select": {"type": "point", "fields": ["State"]},
+      "bind": "legend"
     }
   ],
-  "marks": [
-    {
-      "name": "layer_0_pathgroup",
-      "type": "group",
-      "from": {
-        "facet": {
-          "name": "faceted_path_layer_0_main",
-          "data": "source_0",
-          "groupby": ["State"]
-        }
-      },
-      "encode": {
-        "update": {
-          "width": {"field": {"group": "width"}},
-          "height": {"field": {"group": "height"}}
-        }
-      },
-      "marks": [
-        {
-          "name": "layer_0_marks",
-          "type": "line",
-          "style": ["line"],
-          "sort": {"field": "x"},
-          "interactive": true,
-          "from": {"data": "faceted_path_layer_0_main"},
-          "encode": {
-            "update": {
-              "strokeWidth": {"value": 2.5},
-              "stroke": {"scale": "color", "field": "State"},
-              "opacity": [
-                {
-                  "test": "!length(data(\"State_Selection_store\")) || vlSelectionTest(\"State_Selection_store\", datum)",
-                  "value": 1
-                },
-                {"value": 0.1}
-              ],
-              "tooltip": {
-                "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",.0f\")}"
-              },
-              "description": {
-                "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",.0f\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",.0f\"))"
-              },
-              "x": {"scale": "x", "field": "Installation year"},
-              "y": {"scale": "y", "field": "Installations_Count"},
-              "defined": {
-                "signal": "isValid(datum[\"Installations_Count\"]) && isFinite(+datum[\"Installations_Count\"])"
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "layer_1_marks",
-      "type": "symbol",
-      "style": ["point"],
-      "interactive": true,
-      "from": {"data": "data_0"},
-      "encode": {
-        "update": {
-          "opacity": [
-            {
-              "test": "!length(data(\"State_Selection_store\")) || vlSelectionTest(\"State_Selection_store\", datum)",
-              "value": 1
-            },
-            {"value": 0.1}
-          ],
-          "fill": {"scale": "color", "field": "State"},
-          "tooltip": {
-            "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",.0f\")}"
-          },
-          "ariaRoleDescription": {"value": "point"},
-          "description": {
-            "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",.0f\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",.0f\"))"
-          },
-          "x": {"scale": "x", "field": "Installation year"},
-          "y": {"scale": "y", "field": "Installations_Count"}
-        }
-      }
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "point",
-      "domain": {
-        "fields": [
-          {"data": "source_0", "field": "Installation year"},
-          {"data": "data_0", "field": "Installation year"}
-        ],
-        "sort": true
-      },
-      "range": [0, {"signal": "width"}],
-      "padding": 0.5
-    },
-    {
-      "name": "y",
-      "type": "linear",
-      "domain": {
-        "fields": [
-          {"data": "source_0", "field": "Installations_Count"},
-          {"data": "data_0", "field": "Installations_Count"}
-        ]
-      },
-      "range": [{"signal": "height"}, 0],
-      "nice": true,
-      "zero": true
-    },
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
-      "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
-    }
-  ],
-  "axes": [
-    {
-      "scale": "y",
-      "orient": "left",
-      "grid": true,
-      "gridScale": "x",
-      "tickCount": {"signal": "ceil(height/40)"},
-      "domain": false,
-      "labels": false,
-      "aria": false,
-      "maxExtent": 0,
-      "minExtent": 0,
-      "ticks": false,
-      "zindex": 0
-    },
-    {
-      "scale": "x",
-      "orient": "bottom",
-      "grid": false,
+  "mark": {
+    "type": "line",
+    "point": true,
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "Installation year",
+      "timeUnit": "year",
+      "type": "temporal",
       "title": "Year",
-      "labelAngle": 0,
-      "labelBaseline": "top",
-      "zindex": 0
+      "axis": {"grid": false, "format": "%Y"}
     },
-    {
-      "scale": "y",
-      "orient": "left",
-      "grid": false,
+    "y": {
+      "field": "Installations_Count",
+      "type": "quantitative",
       "title": "Number of Installations",
-      "format": ",.0f",
-      "labelOverlap": true,
-      "tickCount": {"signal": "ceil(height/40)"},
-      "zindex": 0
-    }
-  ],
-  "legends": [
-    {
-      "title": "State",
-      "stroke": "color",
-      "symbolType": "circle",
-      "encode": {
-        "labels": {
-          "name": "State_legend_labels",
-          "interactive": true,
-          "update": {
-            "opacity": [
-              {
-                "test": "(!length(data(\"State_Selection_store\")) || (State_Selection[\"State\"] && indexof(State_Selection[\"State\"], datum.value) >= 0))",
-                "value": 1
-              },
-              {"value": 0.35}
-            ],
-            "cursor": {"value": "pointer"}
-          }
-        },
-        "symbols": {
-          "name": "State_legend_symbols",
-          "interactive": true,
-          "update": {
-            "opacity": [
-              {
-                "test": "(!length(data(\"State_Selection_store\")) || (State_Selection[\"State\"] && indexof(State_Selection[\"State\"], datum.value) >= 0))",
-                "value": 1
-              },
-              {"value": 0.35}
-            ],
-            "cursor": {"value": "pointer"}
-          }
-        },
-        "entries": {
-          "name": "State_legend_entries",
-          "interactive": true,
-          "update": {
-            "fill": {"value": "transparent"},
-            "cursor": {"value": "pointer"}
-          }
-        }
-      },
-      "fill": "color"
-    }
-  ],
+      "axis": {
+        "format": ","
+      }
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "scale": {
+        "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#7f7f7f"]
+      }
+    },
+    "opacity": {
+      "condition": {"param": "State_Selection", "value": 1},
+      "value": 0.1
+    },
+    "tooltip": [
+      {"field": "Installation year", "timeUnit": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+      {"field": "State", "type": "nominal"},
+      {"field": "Installations_Count", "type": "quantitative", "title": "Total Systems", "format": ","}
+    ]
+  },
   "config": {
     "font": "Helvetica Neue, Arial, sans-serif",
     "title": {
