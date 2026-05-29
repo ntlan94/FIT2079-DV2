@@ -91,18 +91,43 @@
     </p>
     
     <div class="chart-grid">
+      
       <div class="container">
+        <div class="toolbar">
+          <button class="reset-btn" onclick="resetZoomPan('vis5', this)" title="Reset View">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5A6.5 6.5 0 1 1 7 1.5"/>
+              <polyline points="7,1 7,4 10,4"/>
+            </svg>
+            Reset View
+          </button>
+        </div>
+        
         <div id="vis5" class="vis-container"></div>
-        <div class="key-insight">
+        
+        <div class="key-insight" style="max-width: 100%; margin-top: 20px;">
           <strong>Insight:</strong> While solar PV universally dominates, micro-hydro systems find a strong, unique niche in Tasmania (TAS) due to its mountainous topography and water resources, whereas coastal states experiment with micro-wind.
         </div>
       </div>
+
       <div class="container">
+        <div class="toolbar">
+          <button class="reset-btn" onclick="resetZoomPan('vis6', this)" title="Reset View">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5A6.5 6.5 0 1 1 7 1.5"/>
+              <polyline points="7,1 7,4 10,4"/>
+            </svg>
+            Reset View
+          </button>
+        </div>
+        
         <div id="vis6" class="vis-container"></div>
-        <div class="key-insight">
+        
+        <div class="key-insight" style="max-width: 100%; margin-top: 20px;">
           <strong>Insight:</strong> The Diverging Bar Chart highlights the next phase of electrification. NSW is not only dominating solar PV (left), but aggressively leading the nation in adopting highly efficient Air Source Heat Pumps (right).
         </div>
       </div>
+
     </div>
 
     <p class="chapter-desc">
@@ -204,7 +229,7 @@
     </p>
     
     <p class="ai-disclosure">
-      Generative AI (Google Gemini) was used to assist in coding, Vega-Lite specifications, and grammar, as disclosed per unit requirements.
+      Generative AI (Google Gemini) was used to assist in coding, Vega-Lite specifications, and grammar.
     </p>
     
     <div class="sources-container">
