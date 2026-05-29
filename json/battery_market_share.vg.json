@@ -14,14 +14,6 @@
   },
   "transform": [
     {
-      "calculate": "datum.State == 'ACT' ? 'NSW' : datum.State",
-      "as": "State"
-    },
-    {
-      "aggregate": [{"op": "sum", "field": "Installations", "as": "Installations"}],
-      "groupby": ["Year", "State"]
-    }
-  ],
       "fold": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
       "as": ["State", "RawValue"]
     },
@@ -32,6 +24,14 @@
     {
       "calculate": "datetime(toNumber(datum['Installation year']), 0, 1)",
       "as": "Year"
+    },
+    {
+      "calculate": "datum.State == 'ACT' ? 'NSW' : datum.State",
+      "as": "State"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "Installations", "as": "Installations"}],
+      "groupby": ["Year", "State"]
     }
   ],
   "vconcat": [
@@ -60,8 +60,6 @@
           "field": "State",
           "type": "nominal",
           "scale": {
-            "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
-            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#7f7f7f"]
             "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
             "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#7f7f7f"]
           },

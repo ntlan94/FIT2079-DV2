@@ -53,10 +53,7 @@
         {
           "type": "bin",
           "field": "Total_Installs",
-          "as": [
-            "bin_maxbins_30_Total_Installs",
-            "bin_maxbins_30_Total_Installs_end"
-          ],
+          "as": ["bin_maxbins_30_Total_Installs", "bin_maxbins_30_Total_Installs_end"],
           "signal": "bin_maxbins_30_Total_Installs_bins",
           "extent": {"signal": "bin_maxbins_30_Total_Installs_extent"},
           "maxbins": 30
@@ -69,10 +66,7 @@
         {
           "type": "bin",
           "field": "Total_Capacity",
-          "as": [
-            "bin_maxbins_30_Total_Capacity",
-            "bin_maxbins_30_Total_Capacity_end"
-          ],
+          "as": ["bin_maxbins_30_Total_Capacity", "bin_maxbins_30_Total_Capacity_end"],
           "signal": "bin_maxbins_30_Total_Capacity_bins",
           "extent": {"signal": "bin_maxbins_30_Total_Capacity_extent"},
           "maxbins": 30
@@ -85,10 +79,7 @@
         {
           "type": "bin",
           "field": "Total_Installs",
-          "as": [
-            "bin_maxbins_10_Total_Installs",
-            "bin_maxbins_10_Total_Installs_end"
-          ],
+          "as": ["bin_maxbins_10_Total_Installs", "bin_maxbins_10_Total_Installs_end"],
           "signal": "bin_maxbins_10_Total_Installs_bins",
           "extent": {"signal": "bin_maxbins_10_Total_Installs_extent"},
           "maxbins": 10
@@ -101,10 +92,7 @@
         {
           "type": "bin",
           "field": "Total_Capacity",
-          "as": [
-            "bin_maxbins_10_Total_Capacity",
-            "bin_maxbins_10_Total_Capacity_end"
-          ],
+          "as": ["bin_maxbins_10_Total_Capacity", "bin_maxbins_10_Total_Capacity_end"],
           "signal": "bin_maxbins_10_Total_Capacity_bins",
           "extent": {"signal": "bin_maxbins_10_Total_Capacity_extent"},
           "maxbins": 10
@@ -112,14 +100,10 @@
         {
           "type": "aggregate",
           "groupby": [
-            "bin_maxbins_30_Total_Installs",
-            "bin_maxbins_30_Total_Installs_end",
-            "bin_maxbins_30_Total_Capacity",
-            "bin_maxbins_30_Total_Capacity_end",
-            "bin_maxbins_10_Total_Installs",
-            "bin_maxbins_10_Total_Installs_end",
-            "bin_maxbins_10_Total_Capacity",
-            "bin_maxbins_10_Total_Capacity_end"
+            "bin_maxbins_30_Total_Installs", "bin_maxbins_30_Total_Installs_end",
+            "bin_maxbins_30_Total_Capacity", "bin_maxbins_30_Total_Capacity_end",
+            "bin_maxbins_10_Total_Installs", "bin_maxbins_10_Total_Installs_end",
+            "bin_maxbins_10_Total_Capacity", "bin_maxbins_10_Total_Capacity_end"
           ],
           "ops": ["count"],
           "fields": [null],
@@ -130,6 +114,10 @@
           "expr": "isValid(datum[\"bin_maxbins_30_Total_Installs\"]) && isFinite(+datum[\"bin_maxbins_30_Total_Installs\"]) && isValid(datum[\"bin_maxbins_30_Total_Capacity\"]) && isFinite(+datum[\"bin_maxbins_30_Total_Capacity\"])"
         }
       ]
+    },
+    {
+      "name": "annotation_data",
+      "values": [{"id": 1}]
     }
   ],
   "marks": [
@@ -144,39 +132,114 @@
           "strokeWidth": {"value": 0.5},
           "fill": {"scale": "color", "field": "__count"},
           "tooltip": {
-            "signal": "{\"Installation Range\": !isValid(datum[\"bin_maxbins_10_Total_Installs\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Installs\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Installs\"], \"\") + \" – \" + format(datum[\"bin_maxbins_10_Total_Installs_end\"], \"\"), \"Capacity Range (kW)\": !isValid(datum[\"bin_maxbins_10_Total_Capacity\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Capacity\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Capacity\"], \"\") + \" – \" + format(datum[\"bin_maxbins_10_Total_Capacity_end\"], \"\"), \"Number of Postcodes\": format(datum[\"__count\"], \"\")}"
+            "signal": "{\"Installation Range\": !isValid(datum[\"bin_maxbins_10_Total_Installs\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Installs\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Installs\"], \"\") + \" \u2013 \" + format(datum[\"bin_maxbins_10_Total_Installs_end\"], \"\"), \"Capacity Range (kW)\": !isValid(datum[\"bin_maxbins_10_Total_Capacity\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Capacity\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Capacity\"], \"\") + \" \u2013 \" + format(datum[\"bin_maxbins_10_Total_Capacity_end\"], \"\"), \"Number of Postcodes\": format(datum[\"__count\"], \"\")}"
           },
           "description": {
-            "signal": "\"Total Systems Installed per Postcode (Binned): \" + (!isValid(datum[\"bin_maxbins_30_Total_Installs\"]) || !isFinite(+datum[\"bin_maxbins_30_Total_Installs\"]) ? \"null\" : format(datum[\"bin_maxbins_30_Total_Installs\"], \"\") + \" – \" + format(datum[\"bin_maxbins_30_Total_Installs_end\"], \"\")) + \"; Total Capacity in kW (Binned): \" + (!isValid(datum[\"bin_maxbins_30_Total_Capacity\"]) || !isFinite(+datum[\"bin_maxbins_30_Total_Capacity\"]) ? \"null\" : format(datum[\"bin_maxbins_30_Total_Capacity\"], \"\") + \" – \" + format(datum[\"bin_maxbins_30_Total_Capacity_end\"], \"\")) + \"; Postcode Count: \" + (format(datum[\"__count\"], \"\")) + \"; Installation Range: \" + (!isValid(datum[\"bin_maxbins_10_Total_Installs\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Installs\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Installs\"], \"\") + \" – \" + format(datum[\"bin_maxbins_10_Total_Installs_end\"], \"\")) + \"; Capacity Range (kW): \" + (!isValid(datum[\"bin_maxbins_10_Total_Capacity\"]) || !isFinite(+datum[\"bin_maxbins_10_Total_Capacity\"]) ? \"null\" : format(datum[\"bin_maxbins_10_Total_Capacity\"], \"\") + \" – \" + format(datum[\"bin_maxbins_10_Total_Capacity_end\"], \"\")) + \"; Number of Postcodes: \" + (format(datum[\"__count\"], \"\"))"
+            "signal": "\"Total Systems Installed per Postcode (Binned): \" + (!isValid(datum[\"bin_maxbins_30_Total_Installs\"]) || !isFinite(+datum[\"bin_maxbins_30_Total_Installs\"]) ? \"null\" : format(datum[\"bin_maxbins_30_Total_Installs\"], \"\") + \" \u2013 \" + format(datum[\"bin_maxbins_30_Total_Installs_end\"], \"\")) + \"; Total Capacity in kW (Binned): \" + (!isValid(datum[\"bin_maxbins_30_Total_Capacity\"]) || !isFinite(+datum[\"bin_maxbins_30_Total_Capacity\"]) ? \"null\" : format(datum[\"bin_maxbins_30_Total_Capacity\"], \"\") + \" \u2013 \" + format(datum[\"bin_maxbins_30_Total_Capacity_end\"], \"\")) + \"; Postcode Count: \" + (format(datum[\"__count\"], \"\"))"
           },
           "x2": {
             "scale": "x",
             "field": "bin_maxbins_30_Total_Installs",
-            "offset": {
-              "signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])) < 0.25 ? -0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])))) : 0)"
-            }
+            "offset": {"signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])) < 0.25 ? -0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])))) : 0)"}
           },
           "x": {
             "scale": "x",
             "field": "bin_maxbins_30_Total_Installs_end",
-            "offset": {
-              "signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])) < 0.25 ? 0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])))) : 0)"
-            }
+            "offset": {"signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])) < 0.25 ? 0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_30_Total_Installs_end\"]) - scale(\"x\", datum[\"bin_maxbins_30_Total_Installs\"])))) : 0)"}
           },
           "y2": {
             "scale": "y",
             "field": "bin_maxbins_30_Total_Capacity",
-            "offset": {
-              "signal": "0.5 + (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])) < 0.25 ? 0.5 * (0.25 - (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])))) : 0)"
-            }
+            "offset": {"signal": "0.5 + (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])) < 0.25 ? 0.5 * (0.25 - (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])))) : 0)"}
           },
           "y": {
             "scale": "y",
             "field": "bin_maxbins_30_Total_Capacity_end",
-            "offset": {
-              "signal": "0.5 + (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])) < 0.25 ? -0.5 * (0.25 - (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])))) : 0)"
-            }
+            "offset": {"signal": "0.5 + (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])) < 0.25 ? -0.5 * (0.25 - (abs(scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity_end\"]) - scale(\"y\", datum[\"bin_maxbins_30_Total_Capacity\"])))) : 0)"}
           }
+        }
+      }
+    },
+    {
+      "name": "annotation_line",
+      "type": "rule",
+      "from": {"data": "annotation_data"},
+      "encode": {
+        "update": {
+          "x": {"value": 155},
+          "y": {"value": 355},
+          "x2": {"value": 22},
+          "y2": {"value": 432},
+          "stroke": {"value": "#7f3b08"},
+          "strokeWidth": {"value": 1.5},
+          "strokeDash": {"value": [4, 3]}
+        }
+      }
+    },
+    {
+      "name": "annotation_bg",
+      "type": "rect",
+      "from": {"data": "annotation_data"},
+      "encode": {
+        "update": {
+          "x": {"value": 50},
+          "y": {"value": 310},
+          "width": {"value": 220},
+          "height": {"value": 60},
+          "fill": {"value": "white"},
+          "fillOpacity": {"value": 0.92},
+          "stroke": {"value": "#7f3b08"},
+          "strokeWidth": {"value": 1.2},
+          "cornerRadius": {"value": 6}
+        }
+      }
+    },
+    {
+      "name": "annotation_text_1",
+      "type": "text",
+      "from": {"data": "annotation_data"},
+      "encode": {
+        "update": {
+          "x": {"value": 160},
+          "y": {"value": 330},
+          "text": {"value": "Highest density bin"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "#7f3b08"},
+          "fontSize": {"value": 12},
+          "fontWeight": {"value": "bold"}
+        }
+      }
+    },
+    {
+      "name": "annotation_text_2",
+      "type": "text",
+      "from": {"data": "annotation_data"},
+      "encode": {
+        "update": {
+          "x": {"value": 160},
+          "y": {"value": 350},
+          "text": {"value": "Most postcodes have low install"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "#555"},
+          "fontSize": {"value": 11}
+        }
+      }
+    },
+    {
+      "name": "annotation_text_3",
+      "type": "text",
+      "from": {"data": "annotation_data"},
+      "encode": {
+        "update": {
+          "x": {"value": 160},
+          "y": {"value": 364},
+          "text": {"value": "counts & low total capacity"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "#555"},
+          "fontSize": {"value": 11}
         }
       }
     }
@@ -185,9 +248,7 @@
     {
       "name": "x",
       "type": "linear",
-      "domain": {
-        "signal": "[bin_maxbins_30_Total_Installs_bins.start, bin_maxbins_30_Total_Installs_bins.stop]"
-      },
+      "domain": {"signal": "[bin_maxbins_30_Total_Installs_bins.start, bin_maxbins_30_Total_Installs_bins.stop]"},
       "range": [0, {"signal": "width"}],
       "bins": {"signal": "bin_maxbins_30_Total_Installs_bins"},
       "zero": false
@@ -195,9 +256,7 @@
     {
       "name": "y",
       "type": "linear",
-      "domain": {
-        "signal": "[bin_maxbins_30_Total_Capacity_bins.start, bin_maxbins_30_Total_Capacity_bins.stop]"
-      },
+      "domain": {"signal": "[bin_maxbins_30_Total_Capacity_bins.start, bin_maxbins_30_Total_Capacity_bins.stop]"},
       "range": [{"signal": "height"}, 0],
       "bins": {"signal": "bin_maxbins_30_Total_Capacity_bins"},
       "zero": false
