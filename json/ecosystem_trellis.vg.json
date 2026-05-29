@@ -60,13 +60,15 @@
         "field": "Solar",
         "type": "quantitative",
         "title": "Solar Systems (Log Scale)",
-        "scale": {"type": "log", "domain": [1, 5000]}
+        "scale": {"type": "log", "domain": [1, 5000]},
+        "axis": {"format": ","}
       },
       "y": {
         "field": "HP_Num",
         "type": "quantitative",
         "title": "Heat Pumps (Log Scale)",
-        "scale": {"type": "log", "domain": [1, 5000]}
+        "scale": {"type": "log", "domain": [1, 5000]},
+        "axis": {"format": ","}
       },
       "size": {
         "field": "Battery_Num",

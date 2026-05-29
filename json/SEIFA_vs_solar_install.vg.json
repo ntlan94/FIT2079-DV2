@@ -11,7 +11,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/ntlan94/FIT2179_DV2/main/data/SEIFA_economic.csv"
+    "url": "data/SEIFA_economic.csv"
   },
   "transform": [
     {"calculate": "toString(datum['2021 Postal Area (POA) Code'])", "as": "Postcode"},
@@ -21,7 +21,7 @@
     {
       "lookup": "Postcode",
       "from": {
-        "data": {"url": "https://raw.githubusercontent.com/ntlan94/FIT2179_DV2/main/data/sgu-solar-installations.csv"},
+        "data": {"url": "data/sgu-solar-installations.csv"},
         "key": "Postcode",
         "fields": ["Total"]
       }
@@ -57,14 +57,14 @@
           "field": "SEIFA_Score",
           "type": "quantitative",
           "title": "SEIFA Advantage Score",
-          "scale": {"domain": [450, 1250]},
+          "scale": {"domain": [450, 1300]},
           "axis": {"grid": true}
         },
         "y": {
           "field": "Installs_Per_1000",
           "type": "quantitative",
           "title": "Solar Installations per 1,000 Residents",
-          "scale": {"domain": [-50, 700]},
+          "scale": {"domain": [-50, 750]},
           "axis": {"grid": true}
         },
         "size": {
@@ -79,8 +79,8 @@
           "title": "SEIFA Decile",
           "scale": {
             "domain": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            "scheme": "purples",
-            "reverse": true
+            "scheme": "bluegreen",
+            "reverse": false
           }
         },
         "opacity": {
@@ -113,7 +113,7 @@
         {
           "regression": "Installs_Per_1000",
           "on": "SEIFA_Score",
-          "extent": [500, 1250]
+          "extent": [0, 3000]
         }
       ],
       "mark": {
@@ -128,30 +128,30 @@
       }
     },
     {
-      "data": {
-        "values": [
-          {"x": 600, "y": 480, "text": "Linear Trendline:"},
-          {"x": 600, "y": 455, "text": "Indicates a weak overall positive correlation"},
-          {"x": 600, "y": 430, "text": "between advantage score and adoption rate."}
-        ]
-      },
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "center",
+        "baseline": "middle",
+        "lineHeight": 18,
         "fontSize": 13,
         "fontWeight": "bold",
-        "color": "#d35400"
+        "color": "#d35400",
+        "yOffset": -41.5,
+        "text": [
+          "Linear Trendline:",
+          "Indicates a weak overall positive correlation",
+          "between advantage score and adoption rate."
+        ]
       },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "text": {"field": "text", "type": "nominal"}
+        "x": {"datum": 640},
+        "y": {"datum": 580}
       }
     },
     {
       "data": {
         "values": [
-          {"x": 680, "y": 415, "x2": 770, "y2": 115}
+          {"x": 640, "y": 580, "x2": 770, "y2": 117.6}
         ]
       },
       "mark": {

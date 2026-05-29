@@ -55,21 +55,9 @@
       "on": [
         {
           "events": [
-            {
-              "source": "view",
-              "type": "click",
-              "markname": "State_legend_symbols"
-            },
-            {
-              "source": "view",
-              "type": "click",
-              "markname": "State_legend_labels"
-            },
-            {
-              "source": "view",
-              "type": "click",
-              "markname": "State_legend_entries"
-            }
+            {"source": "view", "type": "click", "markname": "State_legend_symbols"},
+            {"source": "view", "type": "click", "markname": "State_legend_labels"},
+            {"source": "view", "type": "click", "markname": "State_legend_entries"}
           ],
           "update": "isDefined(datum.value) ? datum.value : item().items[0].items[0].datum.value",
           "force": true
@@ -150,10 +138,10 @@
                 {"value": 0.1}
               ],
               "tooltip": {
-                "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",\")}"
+                "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",.0f\")}"
               },
               "description": {
-                "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",\"))"
+                "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",.0f\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",.0f\"))"
               },
               "x": {"scale": "x", "field": "Installation year"},
               "y": {"scale": "y", "field": "Installations_Count"},
@@ -182,11 +170,11 @@
           ],
           "fill": {"scale": "color", "field": "State"},
           "tooltip": {
-            "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",\")}"
+            "signal": "{\"State\": isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], '\\n') : datum[\"State\"] : \"\"+datum[\"State\"], \"Year\": isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], '\\n') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"], \"Total Systems\": format(datum[\"Installations_Count\"], \",.0f\")}"
           },
           "ariaRoleDescription": {"value": "point"},
           "description": {
-            "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",\"))"
+            "signal": "\"Year: \" + (isValid(datum[\"Installation year\"]) ? isArray(datum[\"Installation year\"]) ? join(datum[\"Installation year\"], ' ') : datum[\"Installation year\"] : \"\"+datum[\"Installation year\"]) + \"; Number of Installations: \" + (format(datum[\"Installations_Count\"], \",.0f\")) + \"; State: \" + (isValid(datum[\"State\"]) ? isArray(datum[\"State\"]) ? join(datum[\"State\"], ' ') : datum[\"State\"] : \"\"+datum[\"State\"]) + \"; Total Systems: \" + (format(datum[\"Installations_Count\"], \",.0f\"))"
           },
           "x": {"scale": "x", "field": "Installation year"},
           "y": {"scale": "y", "field": "Installations_Count"}
@@ -257,7 +245,7 @@
       "orient": "left",
       "grid": false,
       "title": "Number of Installations",
-      "format": ",",
+      "format": ",.0f",
       "labelOverlap": true,
       "tickCount": {"signal": "ceil(height/40)"},
       "zindex": 0
