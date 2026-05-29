@@ -93,16 +93,6 @@
     <div class="chart-grid">
       
       <div class="container">
-        <div class="toolbar">
-          <button class="reset-btn" onclick="resetZoomPan('vis5', this)" title="Reset View">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13.5 2.5A6.5 6.5 0 1 1 7 1.5"/>
-              <polyline points="7,1 7,4 10,4"/>
-            </svg>
-            Reset View
-          </button>
-        </div>
-        
         <div id="vis5" class="vis-container"></div>
         
         <div class="key-insight" style="max-width: 100%; margin-top: 20px;">
@@ -111,16 +101,6 @@
       </div>
 
       <div class="container">
-        <div class="toolbar">
-          <button class="reset-btn" onclick="resetZoomPan('vis6', this)" title="Reset View">
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13.5 2.5A6.5 6.5 0 1 1 7 1.5"/>
-              <polyline points="7,1 7,4 10,4"/>
-            </svg>
-            Reset View
-          </button>
-        </div>
-        
         <div id="vis6" class="vis-container"></div>
         
         <div class="key-insight" style="max-width: 100%; margin-top: 20px;">
@@ -193,6 +173,7 @@
     <div class="container">
       <div id="vis12" class="vis-container"></div>
       
+      <div class="bivariate-title">Legend: Solar vs. Battery Density</div>
       <div class="bivariate-legend">
         <div class="bivariate-y-label">
           More Battery &rarr;
@@ -262,11 +243,10 @@
     // ACT 2
     vegaEmbed('#vis4', "json/SEIFA_vs_solar_install.vg.json").catch(console.error);
     
-    // Hàm Reset Biểu Đồ
     function resetChart(visId, jsonPath) {
-      // Khi bấm nút, nó sẽ load lại đúng file JSON đó vào đúng ID đó
       vegaEmbed(visId, jsonPath).catch(console.error);
     }
+
     
     // ACT 3
     vegaEmbed('#vis5', "json/wind_hydro_donut.vg.json").catch(console.error);
