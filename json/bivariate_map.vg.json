@@ -3,10 +3,10 @@
   "title": {
     "text": "Solar vs. Battery Convergence Map",
     "subtitle": "Bivariate Choropleth highlighting regions with high solar but low battery adoption",
-    "anchor": "start",
+    "anchor": "middle",
     "color": "#2c3e50"
   },
-  "width": 800,
+  "width": 900,
   "height": 600,
   "params": [
     {

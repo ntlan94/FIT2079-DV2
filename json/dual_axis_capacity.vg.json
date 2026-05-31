@@ -8,7 +8,9 @@
     "text": "Quantity vs. Quality: Solar Installations and Average System Size",
     "subtitle": "Top 15 Postcodes by Installation Volume vs. Average Capacity (kW) per System",
     "anchor": "middle",
-    "color": "#2c3e50"
+    "color": "#2c3e50",
+    "fontSize": 30,
+    "subtitleFontSize": 21.5
   },
   "data": [
     {
@@ -117,7 +119,9 @@
       "orient": "bottom",
       "title": "Location (State + Postcode)",
       "labelAngle": 315,
-      "labelAlign": "right"
+      "labelAlign": "right",
+      "labelFontSize": 17,
+      "titleFontSize": 20
     },
     {
       "scale": "y_bars",
@@ -125,14 +129,18 @@
       "title": "Total Installations (Bars)",
       "titleColor": "#d35400",
       "labelColor": "#d35400",
-      "grid": true
+      "grid": true,
+      "labelFontSize": 17,
+      "titleFontSize": 20
     },
     {
       "scale": "y_line",
       "orient": "right",
       "title": "Avg System Capacity (kW) (Line)",
       "titleColor": "#2c3e50",
-      "labelColor": "#2c3e50"
+      "labelColor": "#2c3e50",
+      "labelFontSize": 17,
+      "titleFontSize": 20
     }
   ],
   "marks": [
