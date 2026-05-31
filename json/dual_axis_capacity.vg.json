@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
   "padding": 5,
-  "width": 750,
-  "height": 450,
+  "width": 900,
+  "height": 360,
   "title": {
     "text": "Quantity vs. Quality: Solar Installations and Average System Size",
     "subtitle": "Top 15 Postcodes by Installation Volume vs. Average Capacity (kW) per System",
-    "anchor": "start",
+    "anchor": "middle",
     "color": "#2c3e50"
   },
   "data": [
@@ -22,10 +22,11 @@
       "format": {"type": "csv", "delimiter": ","},
       "transform": [
         {"type": "formula", "expr": "toString(datum.Postcode)", "as": "PC"},
+        {"type": "formula", "expr": "length(datum.PC) == 3 ? '0' + datum.PC : datum.PC", "as": "PC_pad"},
         {"type": "formula", "expr": "toNumber(datum.Postcode)", "as": "p_num"},
         {
           "type": "formula",
-          "expr": "datum.p_num >= 3000 && datum.p_num <= 3999 || datum.p_num >= 8000 && datum.p_num <= 8999 ? 'VIC ' + datum.PC : datum.p_num >= 4000 && datum.p_num <= 4999 || datum.p_num >= 9000 && datum.p_num <= 9999 ? 'QLD ' + datum.PC : datum.p_num >= 5000 && datum.p_num <= 5999 ? 'SA ' + datum.PC : datum.p_num >= 6000 && datum.p_num <= 6999 ? 'WA ' + datum.PC : datum.p_num >= 7000 && datum.p_num <= 7999 ? 'TAS ' + datum.PC : datum.p_num >= 800 && datum.p_num <= 999 ? 'NT ' + datum.PC : 'NSW ' + datum.PC",
+          "expr": "datum.p_num >= 3000 && datum.p_num <= 3999 || datum.p_num >= 8000 && datum.p_num <= 8999 ? 'VIC ' + datum.PC_pad : datum.p_num >= 4000 && datum.p_num <= 4999 || datum.p_num >= 9000 && datum.p_num <= 9999 ? 'QLD ' + datum.PC_pad : datum.p_num >= 5000 && datum.p_num <= 5999 ? 'SA ' + datum.PC_pad : datum.p_num >= 6000 && datum.p_num <= 6999 ? 'WA ' + datum.PC_pad : datum.p_num >= 7000 && datum.p_num <= 7999 ? 'TAS ' + datum.PC_pad : datum.p_num >= 800 && datum.p_num <= 999 ? 'NT ' + datum.PC_pad : 'NSW ' + datum.PC_pad",
           "as": "Postcode_Label"
         },
         {
@@ -184,31 +185,30 @@
     }
   ],
   "config": {
-    "font": "Helvetica Neue, Arial, sans-serif",
+    "font": "Inter, sans-serif",
     "title": {
-      "fontSize": 16,
+      "fontSize": 24,
+      "subtitleFontSize": 16,
       "fontWeight": "bold",
-      "anchor": "start",
-      "color": "#2c3e50",
-      "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d",
-      "offset": 15
+      "anchor": "start"
     },
     "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666",
-      "gridColor": "#e0e0e0"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
     "legend": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
-    "view": {
-      "stroke": "transparent"
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
     }
   }
 }

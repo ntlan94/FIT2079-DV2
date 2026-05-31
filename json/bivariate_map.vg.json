@@ -3,7 +3,6 @@
   "title": {
     "text": "Solar vs. Battery Convergence Map",
     "subtitle": "Bivariate Choropleth highlighting regions with high solar but low battery adoption",
-    "fontSize": 18,
     "anchor": "start",
     "color": "#2c3e50"
   },
@@ -81,5 +80,31 @@
       {"field": "B_Qty", "type": "quantitative", "title": "Battery Installations", "format": ","}
     ]
   },
-  "config": {"view": {"stroke": null}, "font": "sans-serif"}
+  "config": {
+    "font": "Inter, sans-serif",
+    "title": {
+      "fontSize": 24,
+      "subtitleFontSize": 16,
+      "fontWeight": "bold",
+      "anchor": "start"
+    },
+    "axis": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "legend": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
+    }
+  }
 }

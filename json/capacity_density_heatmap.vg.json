@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
   "padding": 5,
-  "width": 700,
-  "height": 450,
+  "width": 600,
+  "height": 350,
   "title": {
     "text": "National Concentration: Solar Installations vs. Capacity",
     "subtitle": "2D Binned Heatmap showing the density distribution of 2,500+ Australian Postcodes",
-    "anchor": "start",
+    "anchor": "middle",
     "color": "#2c3e50"
   },
   "style": "cell",
@@ -166,80 +166,36 @@
       "from": {"data": "annotation_data"},
       "encode": {
         "update": {
-          "x": {"value": 155},
-          "y": {"value": 355},
-          "x2": {"value": 22},
-          "y2": {"value": 432},
-          "stroke": {"value": "#7f3b08"},
-          "strokeWidth": {"value": 1.5},
-          "strokeDash": {"value": [4, 3]}
+          "x": {"value": 135},
+          "y": {"value": 150},
+          "x2": {"value": 20},
+          "y2": {"value": 333},
+          "stroke": {"value": "#d35400"},
+          "strokeWidth": {"value": 1.7}
         }
       }
     },
     {
-      "name": "annotation_bg",
-      "type": "rect",
-      "from": {"data": "annotation_data"},
-      "encode": {
-        "update": {
-          "x": {"value": 50},
-          "y": {"value": 310},
-          "width": {"value": 220},
-          "height": {"value": 60},
-          "fill": {"value": "white"},
-          "fillOpacity": {"value": 0.92},
-          "stroke": {"value": "#7f3b08"},
-          "strokeWidth": {"value": 1.2},
-          "cornerRadius": {"value": 6}
-        }
-      }
-    },
-    {
-      "name": "annotation_text_1",
+      "name": "annotation_text",
       "type": "text",
       "from": {"data": "annotation_data"},
       "encode": {
         "update": {
-          "x": {"value": 160},
-          "y": {"value": 330},
-          "text": {"value": "Highest density bin"},
+          "x": {"value": 150},
+          "y": {"value": 100},
+          "text": {
+            "value": [
+              "Highest density bin",
+              "Most postcodes have low install",
+              "counts & low total capacity"
+            ]
+          },
           "align": {"value": "center"},
           "baseline": {"value": "middle"},
-          "fill": {"value": "#7f3b08"},
-          "fontSize": {"value": 12},
+          "lineHeight": {"value": 20},
+          "fill": {"value": "#d35400"},
+          "fontSize": {"value": 16},
           "fontWeight": {"value": "bold"}
-        }
-      }
-    },
-    {
-      "name": "annotation_text_2",
-      "type": "text",
-      "from": {"data": "annotation_data"},
-      "encode": {
-        "update": {
-          "x": {"value": 160},
-          "y": {"value": 350},
-          "text": {"value": "Most postcodes have low install"},
-          "align": {"value": "center"},
-          "baseline": {"value": "middle"},
-          "fill": {"value": "#555"},
-          "fontSize": {"value": 11}
-        }
-      }
-    },
-    {
-      "name": "annotation_text_3",
-      "type": "text",
-      "from": {"data": "annotation_data"},
-      "encode": {
-        "update": {
-          "x": {"value": 160},
-          "y": {"value": 364},
-          "text": {"value": "counts & low total capacity"},
-          "align": {"value": "center"},
-          "baseline": {"value": "middle"},
-          "fill": {"value": "#555"},
-          "fontSize": {"value": 11}
         }
       }
     }
@@ -305,31 +261,30 @@
     }
   ],
   "config": {
-    "font": "Helvetica Neue, Arial, sans-serif",
+    "font": "Inter, sans-serif",
     "title": {
-      "fontSize": 16,
+      "fontSize": 24,
+      "subtitleFontSize": 16,
       "fontWeight": "bold",
-      "anchor": "start",
-      "color": "#2c3e50",
-      "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d",
-      "offset": 15
+      "anchor": "start"
     },
     "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666",
-      "gridColor": "#e0e0e0"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
     "legend": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
-    "view": {
-      "stroke": "transparent"
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
     }
   }
 }

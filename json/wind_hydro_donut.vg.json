@@ -3,15 +3,14 @@
   "title": {
     "text": "Beyond Solar: Small-Scale Wind vs. Hydro Adoption",
     "subtitle": "National distribution by State (Extracted dynamically from Postcodes)",
-    "fontSize": 18,
     "anchor": "start",
     "color": "#2c3e50"
   },
   "hconcat": [
     {
-      "width": 300,
-      "height": 300,
-      "title": {"text": "Wind Power Installations", "color": "#34495e"},
+      "width": 180,
+      "height": 280,
+      "title": {"text": "Wind Power Installations", "color": "#34495e", "anchor": "middle"},
       "data": {
         "url": "data/sgu-wind-installations.csv",
         "format": {"type": "csv", "parse": {"Postcode": "string", "Total": "number"}}
@@ -22,7 +21,7 @@
         {"calculate": "datum.PC_pad[0] == '0' ? 'NT' : datum.PC_pad[0] == '2' ? 'NSW' : datum.PC_pad[0] == '3' ? 'VIC' : datum.PC_pad[0] == '4' ? 'QLD' : datum.PC_pad[0] == '5' ? 'SA' : datum.PC_pad[0] == '6' ? 'WA' : datum.PC_pad[0] == '7' ? 'TAS' : 'Other'", "as": "State"},
         {"aggregate": [{"op": "sum", "field": "Total", "as": "Total_Qty"}], "groupby": ["State"]}
       ],
-      "mark": {"type": "arc", "innerRadius": 70, "padAngle": 0.03, "cornerRadius": 4},
+      "mark": {"type": "arc", "innerRadius": 40, "padAngle": 0.03, "cornerRadius": 4},
       "encoding": {
         "theta": {"field": "Total_Qty", "type": "quantitative"},
         "color": {
@@ -41,9 +40,9 @@
       }
     },
     {
-      "width": 300,
-      "height": 300,
-      "title": {"text": "Hydro Power Installations", "color": "#34495e"},
+      "width": 180,
+      "height": 280,
+      "title": {"text": "Hydro Power Installations", "color": "#34495e", "anchor": "middle"},
       "data": {
         "url": "data/sgu-hydro-installations.csv",
         "format": {"type": "csv", "parse": {"Postcode": "string", "Total": "number"}}
@@ -54,7 +53,7 @@
         {"calculate": "datum.PC_pad[0] == '0' ? 'NT' : datum.PC_pad[0] == '2' ? 'NSW' : datum.PC_pad[0] == '3' ? 'VIC' : datum.PC_pad[0] == '4' ? 'QLD' : datum.PC_pad[0] == '5' ? 'SA' : datum.PC_pad[0] == '6' ? 'WA' : datum.PC_pad[0] == '7' ? 'TAS' : 'Other'", "as": "State"},
         {"aggregate": [{"op": "sum", "field": "Total", "as": "Total_Qty"}], "groupby": ["State"]}
       ],
-      "mark": {"type": "arc", "innerRadius": 70, "padAngle": 0.03, "cornerRadius": 4},
+      "mark": {"type": "arc", "innerRadius": 40, "padAngle": 0.03, "cornerRadius": 4},
       "encoding": {
         "theta": {"field": "Total_Qty", "type": "quantitative"},
         "color": {
@@ -73,5 +72,31 @@
       }
     }
   ],
-  "config": {"view": {"stroke": "transparent"}, "font": "sans-serif"}
+  "config": {
+    "font": "Inter, sans-serif",
+    "title": {
+      "fontSize": 24,
+      "subtitleFontSize": 16,
+      "fontWeight": "bold",
+      "anchor": "start"
+    },
+    "axis": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "legend": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
+    }
+  }
 }

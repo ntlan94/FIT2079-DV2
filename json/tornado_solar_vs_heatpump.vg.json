@@ -6,7 +6,7 @@
     "anchor": "start",
     "color": "#2c3e50"
   },
-  "width": 650,
+  "width": 400,
   "height": 350,
   "data": {
     "url": "data/sgu-solar-installations.csv",
@@ -108,31 +108,30 @@
     }
   ],
   "config": {
-    "font": "Helvetica Neue, Arial, sans-serif",
+    "font": "Inter, sans-serif",
     "title": {
-      "fontSize": 16,
+      "fontSize": 24,
+      "subtitleFontSize": 16,
       "fontWeight": "bold",
-      "anchor": "start",
-      "color": "#2c3e50",
-      "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d",
-      "offset": 15
+      "anchor": "start"
     },
     "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666",
-      "gridColor": "#e0e0e0"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
     "legend": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
-    "view": {
-      "stroke": "transparent"
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
     }
   }
 }

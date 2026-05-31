@@ -5,8 +5,8 @@
     "anchor": "start",
     "color": "#2c3e50"
   },
-  "width": 800,
-  "height": 500,
+  "width": 1100,
+  "height": 350,
   "data": {
     "url": "data/sgu-solar-installations.csv",
     "format": {
@@ -16,6 +16,9 @@
   },
   "transform": [
     {"filter": "datum.Total > 0"},
+    {"calculate": "length(datum.Postcode) == 3 ? '0' + datum.Postcode : datum.Postcode", "as": "PC_pad"},
+    {"calculate": "toNumber(datum.Postcode)", "as": "p_num"},
+    {"calculate": "datum.p_num >= 3000 && datum.p_num <= 3999 || datum.p_num >= 8000 && datum.p_num <= 8999 ? 'VIC ' + datum.PC_pad : datum.p_num >= 4000 && datum.p_num <= 4999 || datum.p_num >= 9000 && datum.p_num <= 9999 ? 'QLD ' + datum.PC_pad : datum.p_num >= 5000 && datum.p_num <= 5999 ? 'SA ' + datum.PC_pad : datum.p_num >= 6000 && datum.p_num <= 6999 ? 'WA ' + datum.PC_pad : datum.p_num >= 7000 && datum.p_num <= 7999 ? 'TAS ' + datum.PC_pad : datum.p_num >= 800 && datum.p_num <= 999 ? 'NT ' + datum.PC_pad : 'NSW ' + datum.PC_pad", "as": "Postcode_Label"},
     {
       "window": [{"op": "rank", "as": "rank"}],
       "sort": [{"field": "Total", "order": "descending"}]
@@ -25,7 +28,7 @@
   ],
   "encoding": {
     "y": {
-      "field": "Postcode",
+      "field": "Postcode_Label",
       "type": "nominal",
       "sort": {"field": "Total", "order": "descending"},
       "title": "Postcode",
@@ -52,41 +55,40 @@
           "type": "quantitative",
           "title": "Total Installations",
           "scale": {"domainMin": 950},
-          "axis": {"format": ","}
+          "axis": {"format": ",.0f"}
         },
         "tooltip": [
-          {"field": "Postcode", "type": "nominal"},
+          {"field": "Postcode_Label", "type": "nominal", "title": "Location"},
           {"field": "Total", "type": "quantitative", "format": ",", "title": "Total Installations"}
         ]
       }
     }
   ],
   "config": {
-    "font": "Helvetica Neue, Arial, sans-serif",
+    "font": "Inter, sans-serif",
     "title": {
-      "fontSize": 16,
+      "fontSize": 24,
+      "subtitleFontSize": 16,
       "fontWeight": "bold",
-      "anchor": "start",
-      "color": "#2c3e50",
-      "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d",
-      "offset": 15
+      "anchor": "start"
     },
     "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666",
-      "gridColor": "#e0e0e0"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
     "legend": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
-    "view": {
-      "stroke": "transparent"
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
     }
   }
 }

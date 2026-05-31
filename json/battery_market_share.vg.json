@@ -3,7 +3,6 @@
   "title": {
     "text": "The Shift in Power: Evolution of the Residential Battery Market Shared by State",
     "subtitle": "100% Stacked Area Chart showing the shifting dominance from SA to NSW/VIC (2014-2025)",
-    "subtitleFontSize": 13,
     "anchor": "start",
     "color": "#2c3e50",
     "subtitleColor": "#7f8c8d"
@@ -37,7 +36,7 @@
   "vconcat": [
     {
       "description": "TOP CHART: Focus View",
-      "width": 720,
+      "width": 920,
       "height": 300,
       "mark": { "type": "area", "opacity": 0.9 },
       "encoding": {
@@ -74,7 +73,7 @@
     },
     {
       "description": "BOTTOM CHART: Context / brush selector",
-      "width": 720,
+      "width": 920,
       "height": 60,
       "mark": { "type": "area", "opacity": 0.4 },
       "params": [
@@ -103,8 +102,8 @@
           "field": "State",
           "type": "nominal",
           "scale": {
-            "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT", "ACT/NT", "NSW/ACT"],
-            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+            "domain": ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"],
+            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#7f7f7f"]
           },
           "legend": null
         }
@@ -112,31 +111,30 @@
     }
   ],
   "config": {
-    "font": "Helvetica Neue, Arial, sans-serif",
+    "font": "Inter, sans-serif",
     "title": {
-      "fontSize": 16,
+      "fontSize": 24,
+      "subtitleFontSize": 16,
       "fontWeight": "bold",
-      "anchor": "start",
-      "color": "#2c3e50",
-      "subtitleFontSize": 13,
-      "subtitleColor": "#7f8c8d",
-      "offset": 15
+      "anchor": "start"
     },
     "axis": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666",
-      "gridColor": "#e0e0e0"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
     "legend": {
-      "titleFontSize": 13,
-      "labelFontSize": 12,
-      "titleColor": "#444",
-      "labelColor": "#666"
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
     },
-    "view": {
-      "stroke": "transparent"
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
     }
   }
 }

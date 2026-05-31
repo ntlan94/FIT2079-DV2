@@ -2,8 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "The Renewable Ecosystem by State",
-    "subtitle": "Trellis Scatter Plot: Solar (X) vs. Heat Pump (Y) vs. Battery (Size)",
-    "fontSize": 18,
+    "subtitle": [
+      "Trellis Scatter Plot: Solar (X) vs. Heat Pump (Y) vs. Battery (Size). ",
+      "Scroll to zoom, drag to pan, or click Reset View to restore default scale."
+    ],
     "anchor": "start",
     "color": "#2c3e50"
   },
@@ -52,9 +54,16 @@
     "sort": ["NSW", "VIC", "QLD", "WA", "SA", "TAS"]
   },
   "spec": {
-    "width": 180,
-    "height": 180,
-    "mark": {"type": "circle", "opacity": 0.6, "stroke": "black", "strokeWidth": 0.5},
+    "width": 300,
+    "height": 220,
+    "params": [
+      {
+        "name": "grid",
+        "select": "interval",
+        "bind": "scales"
+      }
+    ],
+    "mark": {"type": "circle", "opacity": 0.6, "stroke": "black", "strokeWidth": 0.5, "clip": true},
     "encoding": {
       "x": {
         "field": "Solar",
@@ -94,7 +103,30 @@
     }
   },
   "config": {
-    "view": {"stroke": "transparent"},
-    "font": "sans-serif"
+    "font": "Inter, sans-serif",
+    "title": {
+      "fontSize": 24,
+      "subtitleFontSize": 16,
+      "fontWeight": "bold",
+      "anchor": "start"
+    },
+    "axis": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "legend": {
+      "titleFontSize": 16,
+      "titleFontWeight": "bold",
+      "labelFontSize": 14
+    },
+    "header": {
+      "titleFontSize": 18,
+      "titleFontWeight": "bold",
+      "labelFontSize": 16
+    },
+    "mark": {
+      "fontSize": 14
+    }
   }
 }
